@@ -1,7 +1,7 @@
 
-#ignore thumbnails created by windows
+#Ignore thumbnails created by Windows
 Thumbs.db
-#Ignore files build by Visual Studio
+#Ignore files built by Visual Studio
 *.obj
 *.exe
 *.pdb
@@ -27,13 +27,15 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
+.vs/
+#Nuget packages folder
+packages/
 
 OpenCover.bat
 _CodeCoverageReport
 
 *.dic
 *.orig
-/packages/*
 /PrecompiledWeb
 *.suo
 .vs/config/applicationhost.config
@@ -52,5 +54,5 @@ artifacts/
 _Chutzpah.coverage.html
 
 *.test.html
-src/Alpha.Reports.Site/jsUnitTest.xml
-.vs/Alpha.Reports.Site/v14/suo36F2.tmp
+src/Fanex.Result.ThirdParty/jsUnitTest.xml
+.vs/Fanex.Result.ThirdParty/v14/suo36F2.tmp
