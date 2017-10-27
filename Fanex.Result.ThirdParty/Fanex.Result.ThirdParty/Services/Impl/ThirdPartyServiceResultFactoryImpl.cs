@@ -12,7 +12,7 @@
         private readonly Dictionary<int, Func<ThirdPartyResultApiConfig, ILogger, ThirdPartyResultService>> thirdPartyProductServiceMaps =
             new Dictionary<int, Func<ThirdPartyResultApiConfig, ILogger, ThirdPartyResultService>>
             {
-                [ProductIdConstants.RNGCasino] = (config, logger) => new RNGCasinoResultServiceImpl(config, logger),
+                [ProductIdConstants.RNGCasino] = (config, logger) => new ThirdPartyResultServiceImpl(config, logger),
                 [ProductIdConstants.Voidbridge] = (config, logger) => new MacauGamesResultServiceImpl(),
                 [ProductIdConstants.FishingWorld] = (config, logger) => new FishingWorldResultServiceImpl()
             };
@@ -26,9 +26,9 @@
         {
             var config = new ThirdPartyResultApiConfigImpl(productId);
 
-            var service = thirdPartyProductServiceMaps.ContainsKey(productId) ?
-                thirdPartyProductServiceMaps[productId](config, logger) :
-                new RNGCasinoResultServiceImpl(config, logger);
+            var service = thirdPartyProductServiceMaps.ContainsKey(productId)
+                ? thirdPartyProductServiceMaps[productId](config, logger)
+                : new ThirdPartyResultServiceImpl(config, logger);
 
             return service;
         }
