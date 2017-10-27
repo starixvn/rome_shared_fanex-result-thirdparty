@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Result.ThirdParty.Services
 {
-    public interface ThirdPartyServiceResultFactory
+    public interface ThirdPartyResultServiceFactory
     {
         ThirdPartyResultService CreateThirdPartyResultService(int productId);
     }

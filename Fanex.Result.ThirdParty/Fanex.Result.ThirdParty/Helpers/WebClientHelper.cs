@@ -1,10 +1,26 @@
 ﻿namespace Fanex.Result.ThirdParty.Helpers
 {
+    using System;
     using System.Net;
 
     public static class WebClientHelper
     {
-        public static string UploadString(string address, string data)
+        [ThreadStatic]
+        private static Func<string, string, string> uploadStringFunc;
+
+        public static Func<string, string, string> CallHttpPost
+        {
+            get
+            {
+                return uploadStringFunc ?? UploadString;
+            }
+            internal set
+            {
+                uploadStringFunc = value;
+            }
+        }
+
+        internal static string UploadString(string address, string data)
         {
             var responseString = string.Empty;
 

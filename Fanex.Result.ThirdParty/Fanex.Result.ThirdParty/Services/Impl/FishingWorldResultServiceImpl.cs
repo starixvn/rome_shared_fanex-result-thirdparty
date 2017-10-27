@@ -17,16 +17,16 @@
             this.resultApi = resultApi ?? new GlobalGamingResultApi();
         }
 
-        public ThirdPartyResult GetResultDetails(ThirdPartyResultQuery request)
+        public ThirdPartyResult GetResultLink(ThirdPartyResultQuery request)
         {
             try
             {
-                var siteId = SiteIdHelper.GetSiteIdByRole(request.RoleId);
+                var siteId = SiteHelper.GetSiteIdByRole(request.RoleId);
                 var globalGamingDTO = new GlobalGamingDTO
                 {
                     CustId = request.CustId.ToString(),
                     GameId = request.RefNo,
-                    SiteId = siteId.ToString(),
+                    SiteId = siteId,
                     Language = request.Language
                 };
 

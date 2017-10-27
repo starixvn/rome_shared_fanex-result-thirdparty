@@ -6,7 +6,7 @@
     using Logging;
     using Sunplus.Agent.Model.Definitions;
 
-    public class ThirdPartyServiceResultFactoryImpl : ThirdPartyServiceResultFactory
+    public class ThirdPartyResultServiceFactoryImpl : ThirdPartyResultServiceFactory
     {
         private readonly ILogger logger;
         private readonly Dictionary<int, Func<ThirdPartyResultApiConfig, ILogger, ThirdPartyResultService>> thirdPartyProductServiceMaps =
@@ -17,7 +17,7 @@
                 [ProductIdConstants.FishingWorld] = (config, logger) => new FishingWorldResultServiceImpl()
             };
 
-        public ThirdPartyServiceResultFactoryImpl(ILogger logger)
+        public ThirdPartyResultServiceFactoryImpl(ILogger logger)
         {
             this.logger = logger;
         }

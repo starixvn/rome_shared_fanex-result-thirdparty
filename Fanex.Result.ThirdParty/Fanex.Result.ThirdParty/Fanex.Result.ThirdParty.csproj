@@ -17,9 +17,10 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>618</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -139,7 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\ThirdPartyResultApiConfig.cs" />
-    <Compile Include="Helpers\SiteIdHelper.cs" />
+    <Compile Include="Helpers\SiteHelper.cs" />
     <Compile Include="Helpers\WebClientHelper.cs" />
     <Compile Include="Models\Auth.cs" />
     <Compile Include="Models\Call.cs" />
@@ -153,9 +154,9 @@
     <Compile Include="Services\Impl\FishingWorldResultServiceImpl.cs" />
     <Compile Include="Services\Impl\MacauGamesResultServiceImpl.cs" />
     <Compile Include="Services\Impl\ThirdPartyResultServiceImpl.cs" />
-    <Compile Include="Services\Impl\ThirdPartyServiceResultFactoryImpl.cs" />
+    <Compile Include="Services\Impl\ThirdPartyResultServiceFactoryImpl.cs" />
     <Compile Include="Services\ThirdPartyResultService.cs" />
-    <Compile Include="Services\ThirdPartyServiceResultFactory.cs" />
+    <Compile Include="Services\ThirdPartyResultServiceFactory.cs" />
     <Compile Include="Utils\SystemTime.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -15,11 +15,11 @@
             this.voidbridgeApi = voidbridgeApi ?? new VoidbridgeApiImp();
         }
 
-        public ThirdPartyResult GetResultDetails(ThirdPartyResultQuery request)
+        public ThirdPartyResult GetResultLink(ThirdPartyResultQuery request)
         {
             try
             {
-                var siteId = SiteIdHelper.GetSiteIdByRole(request.RoleId);
+                var siteId = SiteHelper.GetSiteIdByRole(request.RoleId);
 
                 var resultLink = voidbridgeApi.GetBetHistoryUrl(
                     request.CustId.ToString(),

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Web;
+    using Common;
     using Configurations;
     using Helpers;
     using Logging;
@@ -34,7 +35,7 @@
             this.logger = logger;
         }
 
-        public virtual ThirdPartyResult GetResultDetails(ThirdPartyResultQuery request)
+        public virtual ThirdPartyResult GetResultLink(ThirdPartyResultQuery request)
         {
             var toKen = GetToken(request.RoleId);
 
@@ -78,7 +79,7 @@
                     }
                 };
 
-                var responseString = WebClientHelper.UploadString(authorizationUrl, JsonConvert.SerializeObject(request));
+                var responseString = WebClientHelper.CallHttpPost(authorizationUrl, JsonConvert.SerializeObject(request));
                 var result = JsonConvert.DeserializeObject<TokenResponse>(responseString);
 
                 return result;
@@ -110,7 +111,7 @@
             var index = roleId.Equals(UserTypes.Agent) ? 2
                     : roleId.Equals(UserTypes.Master) ? 1 : 0;
 
-            return Convert.ToInt32(siteIds[index]);
+            return Converter.ToInt(siteIds[index]);
         }
 
         protected virtual string GetLanguageCode(string language)
