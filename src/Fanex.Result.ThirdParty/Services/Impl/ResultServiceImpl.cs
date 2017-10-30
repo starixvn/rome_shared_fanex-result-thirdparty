@@ -36,25 +36,25 @@
             this.jsonConverter = jsonConverter;
         }
 
-        public virtual ThirdPartyResult GetResultLink(ThirdPartyResultQuery request)
+        public virtual Result GetResultLink(ThirdPartyResultQuery request)
         {
             var toKen = GetToken(request.RoleId);
 
             if (toKen == null)
             {
                 var resultMessage = $"Cannot connect to {config.ProductName} API. Please contact Administrator.";
-                return new ErrorThirdPartyResult(resultMessage);
+                return new ErrorResult(resultMessage);
             }
 
             if (!toKen.Result.ErrorCode.Equals("0"))
             {
-                return new ErrorThirdPartyResult(toKen.Result.ErrorDescription);
+                return new ErrorResult(toKen.Result.ErrorDescription);
             }
 
             var parameters = GetParameters(toKen.Result.Token, request.RefNo, request.Language);
             var resultLink = string.Format(config.ResultUrl, parameters);
 
-            return new SuccessThirdPartyResult(resultLink);
+            return new SuccessResult(resultLink);
         }
 
         protected internal virtual TokenResponse GetToken(int roleId)
@@ -107,16 +107,7 @@
 
         protected virtual int GetSiteIdByRole(int roleId)
         {
-            var siteIds = config.SiteIds;
-
-            var siteIdMaps = new Dictionary<int, string>
-            {
-                [RoleIdConstants.Super] = siteIds[0],
-                [RoleIdConstants.Master] = siteIds[1],
-                [RoleIdConstants.Agent] = siteIds[2]
-            };
-
-            var siteId = SiteHelper.GetSiteIdByRole(roleId, siteIdMaps, siteIdMaps[RoleIdConstants.Super]);
+            var siteId = SiteHelper.GetSiteIdByRole(roleId, config.SiteIdMaps, config.SiteIdMaps[RoleIdConstants.Super]);
 
             return Converter.ToInt(siteId);
         }

@@ -49,7 +49,7 @@
 
             resultApi.GetResultUrl(Arg.Any<GlobalGamingDTO>()).Returns("Url");
 
-            var expectedModel = new SuccessThirdPartyResult("Url");
+            var expectedModel = new SuccessResult("Url");
 
             // Act
             var actualModel = fishingWorldResultService.GetResultLink(query);
@@ -66,7 +66,7 @@
 
             resultApi.GetResultUrl(Arg.Any<GlobalGamingDTO>()).Returns(x => { throw new Exception("ErrorMessage"); });
 
-            var expectedModel = new ErrorThirdPartyResult("ErrorMessage");
+            var expectedModel = new ErrorResult("ErrorMessage");
 
             // Act
             var actualModel = fishingWorldResultService.GetResultLink(query);

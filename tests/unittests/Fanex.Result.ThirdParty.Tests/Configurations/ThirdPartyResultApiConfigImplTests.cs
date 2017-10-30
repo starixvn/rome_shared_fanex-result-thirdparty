@@ -1,7 +1,9 @@
 ﻿namespace Fanex.Result.ThirdParty.Tests.Configurations
 {
+    using System.Collections.Generic;
     using System.Collections.Specialized;
     using ThirdParty.Configurations;
+    using ThirdParty.Constants;
     using Xunit;
 
     public class ThirdPartyResultApiConfigImplTests
@@ -16,7 +18,7 @@
                 ["6:ProductName"] = "ProductName",
                 ["6:AuthorizationUrl"] = "AuthorizationUrl",
                 ["6:Password"] = "Password",
-                ["6:SiteIds"] = "3000;3100;3200",
+                ["6:SiteIds"] = "3200;3100;3000",
                 ["6:VendorId"] = "10",
                 ["6:Seq"] = "Seq",
                 ["6:ResultUrl"] = "ResultUrl",
@@ -66,13 +68,18 @@
         }
 
         [Fact]
-        public void SiteIds_HasConfig_ReturnCorrectSetting()
+        public void SiteIdMaps_HasConfig_ReturnCorrectSetting()
         {
             // Arrange
-            var expectedSetting = new string[] { "3000", "3100", "3200" };
+            var expectedSetting = new Dictionary<int, string>
+            {
+                [RoleIdConstants.Super] = "3200",
+                [RoleIdConstants.Master] = "3100",
+                [RoleIdConstants.Agent] = "3000"
+            };
 
             // Act
-            var actualSetting = thirdPartyResultApiConfig.SiteIds;
+            var actualSetting = thirdPartyResultApiConfig.SiteIdMaps;
 
             // Assert
             Assert.Equal(expectedSetting, actualSetting);

@@ -1,12 +1,14 @@
 ﻿namespace Fanex.Result.ThirdParty.Tests.Services
 {
     using System;
+    using System.Collections.Generic;
     using KellermanSoftware.CompareNetObjects;
     using Logging;
     using Models;
     using Models.Requests;
     using NSubstitute;
     using ThirdParty.Configurations;
+    using ThirdParty.Constants;
     using ThirdParty.Helpers;
     using ThirdParty.Services;
     using ThirdParty.Services.Impl;
@@ -27,7 +29,14 @@
             config = Substitute.For<ThirdPartyResultApiConfig>();
             config.ProductName.Returns("RNG Casino");
             config.ResultUrl.Returns("ResultUrl?o={0}");
-            config.SiteIds.Returns(new string[] { "3200", "3100", "3000" });
+
+            var siteIdMaps = new Dictionary<int, string>
+            {
+                [RoleIdConstants.Super] = "3200",
+                [RoleIdConstants.Master] = "3100",
+                [RoleIdConstants.Agent] = "3000"
+            };
+            config.SiteIdMaps.Returns(siteIdMaps);
 
             logger = Substitute.For<ILogger>();
             jsonConverter = Substitute.For<JsonConverter>();
@@ -44,7 +53,7 @@
                 RoleId = 2
             };
 
-            var expectModel = new ErrorThirdPartyResult("Cannot connect to RNG Casino API. Please contact Administrator.");
+            var expectModel = new ErrorResult("Cannot connect to RNG Casino API. Please contact Administrator.");
 
             // Act
             var actualModel = thirdPartyResultService.GetResultLink(query);
@@ -64,7 +73,7 @@
 
             thirdPartyResultService.GetToken(Arg.Any<int>()).Returns(new TokenResponse { Result = new TokenResult { ErrorCode = "1", ErrorDescription = "ErrorMessage" } });
 
-            var expectModel = new ErrorThirdPartyResult("ErrorMessage");
+            var expectModel = new ErrorResult("ErrorMessage");
 
             // Act
             var actualModel = thirdPartyResultService.GetResultLink(query);
@@ -85,7 +94,7 @@
             thirdPartyResultService.GetToken(Arg.Any<int>()).Returns(new TokenResponse { Result = new TokenResult { ErrorCode = "0", ErrorDescription = string.Empty } });
             thirdPartyResultService.GetParameters(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<string>()).Returns("Parameter");
 
-            var expectModel = new SuccessThirdPartyResult("ResultUrl?o=Parameter");
+            var expectModel = new SuccessResult("ResultUrl?o=Parameter");
 
             // Act
             var actualModel = thirdPartyResultService.GetResultLink(query);

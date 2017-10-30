@@ -25,7 +25,7 @@
             this.resultApi = resultApi ?? new GlobalGamingResultApi();
         }
 
-        public ThirdPartyResult GetResultLink(ThirdPartyResultQuery request)
+        public Result GetResultLink(ThirdPartyResultQuery request)
         {
             try
             {
@@ -41,11 +41,11 @@
 
                 var resultLink = resultApi.GetResultUrl(globalGamingDTO);
 
-                return new SuccessThirdPartyResult(resultLink);
+                return new SuccessResult(resultLink);
             }
             catch (Exception ex)
             {
-                return new ErrorThirdPartyResult(ex.Message);
+                return new ErrorResult(ex.Message);
             }
         }
     }

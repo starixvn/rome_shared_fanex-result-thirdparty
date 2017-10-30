@@ -1,7 +1,9 @@
 ﻿namespace Fanex.Result.ThirdParty.Configurations
 {
+    using System.Collections.Generic;
     using Common;
-    using Fanex.Result.ThirdParty.Helpers;
+    using Constants;
+    using Helpers;
 
     public interface ThirdPartyResultApiConfig
     {
@@ -11,7 +13,7 @@
 
         string Password { get; }
 
-        string[] SiteIds { get; }
+        Dictionary<int, string> SiteIdMaps { get; }
 
         int VendorId { get; }
 
@@ -32,7 +34,14 @@
         {
             this.productId = productId;
 
-            SiteIds = AppSettings.GetConfigValue($"{productId}:SiteIds")?.ToArray();
+            var siteIds = AppSettings.GetConfigValue($"{productId}:SiteIds")?.ToArray();
+
+            SiteIdMaps = new Dictionary<int, string>
+            {
+                [RoleIdConstants.Super] = siteIds[0],
+                [RoleIdConstants.Master] = siteIds[1],
+                [RoleIdConstants.Agent] = siteIds[2]
+            };
         }
 
         public string ProductName => AppSettings.GetConfigValue($"{productId}:ProductName");
@@ -41,7 +50,7 @@
 
         public string Password => AppSettings.GetConfigValue($"{productId}:Password");
 
-        public string[] SiteIds { get; }
+        public Dictionary<int, string> SiteIdMaps { get; }
 
         public int VendorId => Converter.ToInt(AppSettings.GetConfigValue($"{productId}:VendorId"));
 

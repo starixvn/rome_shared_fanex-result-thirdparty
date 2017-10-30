@@ -23,7 +23,7 @@
             this.voidbridgeApi = voidbridgeApi ?? new VoidbridgeApiImp();
         }
 
-        public ThirdPartyResult GetResultLink(ThirdPartyResultQuery request)
+        public Result GetResultLink(ThirdPartyResultQuery request)
         {
             try
             {
@@ -35,11 +35,11 @@
                     request.Language,
                     siteId.ToString());
 
-                return new SuccessThirdPartyResult(resultLink);
+                return new SuccessResult(resultLink);
             }
             catch (Exception ex)
             {
-                return new ErrorThirdPartyResult(ex.Message);
+                return new ErrorResult(ex.Message);
             }
         }
     }

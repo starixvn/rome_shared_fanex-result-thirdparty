@@ -53,7 +53,7 @@
                 Arg.Any<string>())
                 .Returns("Url");
 
-            var expectedModel = new SuccessThirdPartyResult("Url");
+            var expectedModel = new SuccessResult("Url");
 
             // Act
             var actualModel = macauGamesResultService.GetResultLink(query);
@@ -74,7 +74,7 @@
                 Arg.Any<string>())
                 .Returns(x => { throw new Exception("ErrorMessage"); });
 
-            var expectedModel = new ErrorThirdPartyResult("ErrorMessage");
+            var expectedModel = new ErrorResult("ErrorMessage");
 
             // Act
             var actualModel = macauGamesResultService.GetResultLink(query);

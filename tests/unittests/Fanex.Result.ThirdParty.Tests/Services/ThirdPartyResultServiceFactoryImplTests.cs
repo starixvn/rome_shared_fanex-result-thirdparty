@@ -1,7 +1,9 @@
 ﻿namespace Fanex.Result.ThirdParty.Tests.Services
 {
+    using System.Collections.Specialized;
     using Logging;
     using NSubstitute;
+    using ThirdParty.Configurations;
     using ThirdParty.Constants;
     using ThirdParty.Services;
     using ThirdParty.Services.Impl;
@@ -24,6 +26,12 @@
         [Fact]
         public void CreateThirdPartyResultService_ProductIsRNGCasino_ReturnThirdPartyResultService()
         {
+            // Arrange
+            AppSettings.AppSettingValues = new NameValueCollection
+            {
+                ["6:SiteIds"] = "3200;3100;3000"
+            };
+
             // Act
             var resultService = thirdPartyServiceResultFactory.CreateThirdPartyResultService(ProductIdConstants.RNGCasino);
 
@@ -34,6 +42,12 @@
         [Fact]
         public void CreateThirdPartyResultService_ProductIsVoidbridge_ReturnMacauGamesResultService()
         {
+            // Arrange
+            AppSettings.AppSettingValues = new NameValueCollection
+            {
+                ["22:SiteIds"] = "3200;3100;3000"
+            };
+
             // Act
             var resultService = thirdPartyServiceResultFactory.CreateThirdPartyResultService(ProductIdConstants.MacauGames);
 
@@ -44,6 +58,12 @@
         [Fact]
         public void CreateThirdPartyResultService_ProductIsFishingWorld_ReturnFishingWorldResultService()
         {
+            // Arrange
+            AppSettings.AppSettingValues = new NameValueCollection
+            {
+                ["24:SiteIds"] = "3200;3100;3000"
+            };
+
             // Act
             var resultService = thirdPartyServiceResultFactory.CreateThirdPartyResultService(ProductIdConstants.FishingWorld);
 
