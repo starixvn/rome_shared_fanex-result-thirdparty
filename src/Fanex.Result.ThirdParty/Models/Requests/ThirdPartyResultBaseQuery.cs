@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Result.ThirdParty.Models.Requests
 {
-    public class ThirdPartyResultQuery
+    public class ThirdPartyResultBaseQuery
     {
         public int CustId { get; set; }
 

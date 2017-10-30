@@ -5,6 +5,6 @@
 
     public interface ResultService
     {
-        Result GetResultLink(ThirdPartyResultQuery request);
+        Result GetResultLink(ThirdPartyResultBaseQuery request);
     }
 }

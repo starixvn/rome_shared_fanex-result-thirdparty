@@ -1,0 +1,27 @@
+﻿@model Fanex.Result.ThirdParty.Models.Views.ThirdPartyResultViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Assets/styles.css" rel="stylesheet" />
+    <title>@Model.Title</title>
+</head>
+<body>
+    <div id="handhistory-result">
+        @{
+            var result = Model.Result;
+            if (result.IsSuccess)
+            {
+                <iframe src="@result.Value" frameborder="0" class="handhistory-iframe"></iframe>
+            }
+            else
+            {
+                <div class='alertboxerr'><span class='icon-error'><span>@result.Value</div>
+            }
+        }
+    </div>
+</body>
+</html>

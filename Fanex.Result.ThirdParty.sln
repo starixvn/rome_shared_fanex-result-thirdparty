@@ -13,6 +13,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unittests", "unittests", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Result.ThirdParty.Tests", "tests\unittests\Fanex.Result.ThirdParty.Tests\Fanex.Result.ThirdParty.Tests.csproj", "{1AFC6E17-6D7B-4B03-AEA5-391B72ED50FF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{08C4E3F3-BCD8-4E39-B03F-8959E1FE113E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Result.ThirdParty.Samples", "samples\Fanex.Result.ThirdParty.Samples\Fanex.Result.ThirdParty.Samples.csproj", "{FF07CCA0-1A1B-4674-A510-B001923F0C4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,10 @@ Global
 		{1AFC6E17-6D7B-4B03-AEA5-391B72ED50FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AFC6E17-6D7B-4B03-AEA5-391B72ED50FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AFC6E17-6D7B-4B03-AEA5-391B72ED50FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF07CCA0-1A1B-4674-A510-B001923F0C4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF07CCA0-1A1B-4674-A510-B001923F0C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF07CCA0-1A1B-4674-A510-B001923F0C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF07CCA0-1A1B-4674-A510-B001923F0C4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,5 +43,6 @@ Global
 		{E63C248C-D3AA-4FB4-BF77-586923263E24} = {BA4DE037-2689-4E97-94AB-207BE6E47EDC}
 		{86DEE558-2FEA-4704-A862-F9EAB119261A} = {357F1B8B-F9DF-431B-9314-6ED00A370019}
 		{1AFC6E17-6D7B-4B03-AEA5-391B72ED50FF} = {86DEE558-2FEA-4704-A862-F9EAB119261A}
+		{FF07CCA0-1A1B-4674-A510-B001923F0C4E} = {08C4E3F3-BCD8-4E39-B03F-8959E1FE113E}
 	EndGlobalSection
 EndGlobal

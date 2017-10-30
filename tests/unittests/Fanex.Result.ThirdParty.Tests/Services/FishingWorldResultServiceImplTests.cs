@@ -28,7 +28,7 @@
         public void GetResultLink_NotHaveException_CallGetResultUrlFromApi()
         {
             // Arrange
-            var query = new ThirdPartyResultQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
+            var query = new ThirdPartyResultBaseQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
 
             // Act
             fishingWorldResultService.GetResultLink(query);
@@ -45,7 +45,7 @@
         public void GetResultLink_NotHaveException_ReturnSuccessThirdPartyResult()
         {
             // Arrange
-            var query = new ThirdPartyResultQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
+            var query = new ThirdPartyResultBaseQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
 
             resultApi.GetResultUrl(Arg.Any<GlobalGamingDTO>()).Returns("Url");
 
@@ -62,7 +62,7 @@
         public void GetResultLink_HaveException_ReturnErrorThirdPartyResult()
         {
             // Arrange
-            var query = new ThirdPartyResultQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
+            var query = new ThirdPartyResultBaseQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
 
             resultApi.GetResultUrl(Arg.Any<GlobalGamingDTO>()).Returns(x => { throw new Exception("ErrorMessage"); });
 

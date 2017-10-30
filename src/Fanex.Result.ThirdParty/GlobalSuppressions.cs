@@ -6,3 +6,4 @@
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S101:Types should be named in camel case", Justification = "<Pending>", Scope = "type", Target = "~T:Fanex.Result.ThirdParty.Configurations.ThirdPartyResultApiConfig")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S101:Types should be named in camel case", Justification = "<Pending>", Scope = "type", Target = "~T:Fanex.Result.ThirdParty.Services.ResultService")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S101:Types should be named in camel case", Justification = "<Pending>", Scope = "type", Target = "~T:Fanex.Result.ThirdParty.Services.ThirdPartyResultServiceFactory")]

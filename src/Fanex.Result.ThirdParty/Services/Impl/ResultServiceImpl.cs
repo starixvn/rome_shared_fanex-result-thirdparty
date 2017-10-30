@@ -36,7 +36,7 @@
             this.jsonConverter = jsonConverter;
         }
 
-        public virtual Result GetResultLink(ThirdPartyResultQuery request)
+        public virtual Result GetResultLink(ThirdPartyResultBaseQuery request)
         {
             var toKen = GetToken(request.RoleId);
 

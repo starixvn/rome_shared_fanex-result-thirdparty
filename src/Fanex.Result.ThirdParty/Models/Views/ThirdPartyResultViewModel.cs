@@ -4,14 +4,14 @@
     {
         public ThirdPartyResultViewModel(
             string productName,
-            Result thirdPartyResult)
+            Result result)
         {
             Title = $"{productName} Result";
-            ThirdPartyResult = thirdPartyResult;
+            Result = result;
         }
 
         public string Title { get; }
 
-        public Result ThirdPartyResult { get; }
+        public Result Result { get; }
     }
 }

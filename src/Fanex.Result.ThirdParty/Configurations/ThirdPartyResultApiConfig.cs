@@ -36,12 +36,14 @@
 
             var siteIds = AppSettings.GetConfigValue($"{productId}:SiteIds")?.ToArray();
 
-            SiteIdMaps = new Dictionary<int, string>
-            {
-                [RoleIdConstants.Super] = siteIds[0],
-                [RoleIdConstants.Master] = siteIds[1],
-                [RoleIdConstants.Agent] = siteIds[2]
-            };
+            SiteIdMaps = siteIds == null
+                ? new Dictionary<int, string>()
+                : new Dictionary<int, string>
+                {
+                    [RoleIdConstants.Super] = siteIds[0],
+                    [RoleIdConstants.Master] = siteIds[1],
+                    [RoleIdConstants.Agent] = siteIds[2]
+                };
         }
 
         public string ProductName => AppSettings.GetConfigValue($"{productId}:ProductName");

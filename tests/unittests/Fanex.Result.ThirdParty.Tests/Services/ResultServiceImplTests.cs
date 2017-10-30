@@ -48,7 +48,7 @@
         public void GetResultLink_TokenIsNull_ReturnErrorThirdPartyResult()
         {
             // Arrange
-            var query = new ThirdPartyResultQuery()
+            var query = new ThirdPartyResultBaseQuery()
             {
                 RoleId = 2
             };
@@ -66,7 +66,7 @@
         public void GetResultLink_ErrorCodeIsNotZero_ReturnErrorThirdPartyResult()
         {
             // Arrange
-            var query = new ThirdPartyResultQuery()
+            var query = new ThirdPartyResultBaseQuery()
             {
                 RoleId = 2
             };
@@ -86,7 +86,7 @@
         public void GetResultLink_ErrorCodeIsZero_ReturnSuccessThirdPartyResult()
         {
             // Arrange
-            var query = new ThirdPartyResultQuery()
+            var query = new ThirdPartyResultBaseQuery()
             {
                 RoleId = 2
             };

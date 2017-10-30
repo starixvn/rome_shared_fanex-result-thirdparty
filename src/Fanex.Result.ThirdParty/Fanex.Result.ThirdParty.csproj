@@ -142,7 +142,7 @@
     <Compile Include="Models\Auth.cs" />
     <Compile Include="Models\Call.cs" />
     <Compile Include="Models\Request.cs" />
-    <Compile Include="Models\Requests\ThirdPartyResultQuery.cs" />
+    <Compile Include="Models\Requests\ThirdPartyResultBaseQuery.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\TokenResponse.cs" />
     <Compile Include="Models\TokenResult.cs" />

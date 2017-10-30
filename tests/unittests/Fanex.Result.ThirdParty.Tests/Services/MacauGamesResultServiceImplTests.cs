@@ -27,7 +27,7 @@
         public void GetResultLink_NotHaveException_CallGetResultUrlFromApi()
         {
             // Arrange
-            var query = new ThirdPartyResultQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
+            var query = new ThirdPartyResultBaseQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
 
             // Act
             macauGamesResultService.GetResultLink(query);
@@ -44,7 +44,7 @@
         public void GetResultLink_NotHaveException_ReturnSuccessThirdPartyResult()
         {
             // Arrange
-            var query = new ThirdPartyResultQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
+            var query = new ThirdPartyResultBaseQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
 
             voidbridgeApi.GetBetHistoryUrl(
                 Arg.Any<string>(),
@@ -66,7 +66,7 @@
         public void GetResultLink_HaveException_ReturnErrorThirdPartyResult()
         {
             // Arrange
-            var query = new ThirdPartyResultQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
+            var query = new ThirdPartyResultBaseQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
 
             voidbridgeApi.GetBetHistoryUrl(Arg.Any<string>(),
                 Arg.Any<string>(),
