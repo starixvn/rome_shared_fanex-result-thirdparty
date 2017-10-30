@@ -9,7 +9,6 @@
     using Logging;
     using Models;
     using Models.Requests;
-    using Newtonsoft.Json;
     using Sunplus.Agent.Model.BL.Definitions;
     using Utils;
 
@@ -27,12 +26,14 @@
         };
         private const string DefaultLanguage = "en-US";
         private readonly ILogger logger;
+        private readonly JsonConverter jsonConverter;
         private readonly ThirdPartyResultApiConfig config;
 
-        public ThirdPartyResultServiceImpl(ThirdPartyResultApiConfig config, ILogger logger)
+        public ThirdPartyResultServiceImpl(ThirdPartyResultApiConfig config, ILogger logger, JsonConverter jsonConverter)
         {
             this.config = config;
             this.logger = logger;
+            this.jsonConverter = jsonConverter;
         }
 
         public virtual ThirdPartyResult GetResultLink(ThirdPartyResultQuery request)
@@ -50,13 +51,13 @@
                 return new ThirdPartyResult(false, string.Empty, toKen.Result.ErrorDescription);
             }
 
-            var parameters = GetHandHistoryParameters(toKen.Result.Token, request.RefNo, request.Language);
+            var parameters = GetParameters(toKen.Result.Token, request.RefNo, request.Language);
             var resultLink = string.Format(config.ResultUrl, parameters);
 
             return new ThirdPartyResult(true, resultLink, string.Empty);
         }
 
-        protected virtual TokenResponse GetToken(int roleId)
+        protected internal virtual TokenResponse GetToken(int roleId)
         {
             try
             {
@@ -79,8 +80,8 @@
                     }
                 };
 
-                var responseString = WebClientHelper.CallHttpPost(authorizationUrl, JsonConvert.SerializeObject(request));
-                var result = JsonConvert.DeserializeObject<TokenResponse>(responseString);
+                var responseString = WebClientHelper.CallHttpPost(authorizationUrl, jsonConverter.SerializeObject(request));
+                var result = jsonConverter.DeserializeObject<TokenResponse>(responseString);
 
                 return result;
             }
@@ -91,7 +92,7 @@
             return null;
         }
 
-        protected virtual string GetHandHistoryParameters(string token, string refno, string language)
+        protected internal virtual string GetParameters(string token, string refno, string language)
         {
             var encryptedKey = config.EncryptedKey;
             var param = string.Format(
@@ -114,7 +115,7 @@
             return Converter.ToInt(siteIds[index]);
         }
 
-        protected virtual string GetLanguageCode(string language)
+        protected internal virtual string GetLanguageCode(string language)
             => !string.IsNullOrEmpty(language) && SupportedLanguage.ContainsKey(language)
                 ? SupportedLanguage[language]
                 : SupportedLanguage[DefaultLanguage];
