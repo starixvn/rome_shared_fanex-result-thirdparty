@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Result.ThirdParty", "Fanex.Result.ThirdParty\Fanex.Result.ThirdParty.csproj", "{E63C248C-D3AA-4FB4-BF77-586923263E24}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BA4DE037-2689-4E97-94AB-207BE6E47EDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Result.ThirdParty.Tests", "Fanex.Result.ThirdParty.Tests\Fanex.Result.ThirdParty.Tests.csproj", "{1AFC6E17-6D7B-4B03-AEA5-391B72ED50FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Result.ThirdParty", "src\Fanex.Result.ThirdParty\Fanex.Result.ThirdParty.csproj", "{E63C248C-D3AA-4FB4-BF77-586923263E24}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{357F1B8B-F9DF-431B-9314-6ED00A370019}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unittests", "unittests", "{86DEE558-2FEA-4704-A862-F9EAB119261A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Result.ThirdParty.Tests", "tests\unittests\Fanex.Result.ThirdParty.Tests\Fanex.Result.ThirdParty.Tests.csproj", "{1AFC6E17-6D7B-4B03-AEA5-391B72ED50FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +30,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E63C248C-D3AA-4FB4-BF77-586923263E24} = {BA4DE037-2689-4E97-94AB-207BE6E47EDC}
+		{86DEE558-2FEA-4704-A862-F9EAB119261A} = {357F1B8B-F9DF-431B-9314-6ED00A370019}
+		{1AFC6E17-6D7B-4B03-AEA5-391B72ED50FF} = {86DEE558-2FEA-4704-A862-F9EAB119261A}
 	EndGlobalSection
 EndGlobal
