@@ -14,7 +14,7 @@
 
     public class ResultServiceImpl : ResultService
     {
-        private static readonly Dictionary<string, string> SupportedLanguage = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string> SupportedLanguage = new Dictionary<string, string>
         {
             ["en-US"] = "en",
             ["zh-TW"] = "ch",

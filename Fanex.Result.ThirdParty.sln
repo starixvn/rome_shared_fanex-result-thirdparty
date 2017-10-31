@@ -17,6 +17,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{08C4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Result.ThirdParty.Samples", "samples\Fanex.Result.ThirdParty.Samples\Fanex.Result.ThirdParty.Samples.csproj", "{FF07CCA0-1A1B-4674-A510-B001923F0C4E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{83CFC68D-D4A8-42C0-B6DB-584E8311FBF1}"
+	ProjectSection(SolutionItems) = preProject
+		SonarQube\Fanex.Result.ThirdPartyCSharp.ruleset = SonarQube\Fanex.Result.ThirdPartyCSharp.ruleset
+		SonarQube\SolutionBinding.sqconfig = SonarQube\SolutionBinding.sqconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
