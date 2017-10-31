@@ -9,18 +9,18 @@
     using ThirdParty.Services.Impl;
     using Xunit;
 
-    public class ThirdPartyResultServiceFactoryImplTests
+    public class ProductResultServiceFactoryImplTests
     {
         private readonly ILogger logger;
         private readonly JsonConverter jsonConverter;
-        private readonly ThirdPartyResultServiceFactoryImpl thirdPartyServiceResultFactory;
+        private readonly ProductResultServiceFactoryImpl thirdPartyServiceResultFactory;
 
-        public ThirdPartyResultServiceFactoryImplTests()
+        public ProductResultServiceFactoryImplTests()
         {
             logger = Substitute.For<ILogger>();
             jsonConverter = Substitute.For<JsonConverter>();
 
-            thirdPartyServiceResultFactory = new ThirdPartyResultServiceFactoryImpl(logger, jsonConverter);
+            thirdPartyServiceResultFactory = new ProductResultServiceFactoryImpl(logger, jsonConverter);
         }
 
         [Fact]
@@ -33,7 +33,7 @@
             };
 
             // Act
-            var resultService = thirdPartyServiceResultFactory.CreateThirdPartyResultService(ProductIdConstants.RNGCasino);
+            var resultService = thirdPartyServiceResultFactory.CreateProductResultService(ProductIdConstants.RNGCasino);
 
             // Assert
             Assert.True(resultService is ResultServiceImpl);
@@ -49,10 +49,10 @@
             };
 
             // Act
-            var resultService = thirdPartyServiceResultFactory.CreateThirdPartyResultService(ProductIdConstants.MacauGames);
+            var resultService = thirdPartyServiceResultFactory.CreateProductResultService(ProductIdConstants.MacauGames);
 
             // Assert
-            Assert.True(resultService is MacauGamesResultServiceImpl);
+            Assert.True(resultService is Product22ResultServiceImpl);
         }
 
         [Fact]
@@ -65,10 +65,10 @@
             };
 
             // Act
-            var resultService = thirdPartyServiceResultFactory.CreateThirdPartyResultService(ProductIdConstants.FishingWorld);
+            var resultService = thirdPartyServiceResultFactory.CreateProductResultService(ProductIdConstants.FishingWorld);
 
             // Assert
-            Assert.True(resultService is FishingWorldResultServiceImpl);
+            Assert.True(resultService is Product24ResultServiceImpl);
         }
     }
 }

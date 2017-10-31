@@ -6,11 +6,11 @@
     using ThirdParty.Constants;
     using Xunit;
 
-    public class ThirdPartyResultApiConfigImplTests
+    public class ProductResultApiConfigImplTests
     {
-        private readonly ThirdPartyResultApiConfigImpl thirdPartyResultApiConfig;
+        private readonly ProductResultApiConfigImpl thirdPartyResultApiConfig;
 
-        public ThirdPartyResultApiConfigImplTests()
+        public ProductResultApiConfigImplTests()
         {
             var productId = 6;
             AppSettings.AppSettingValues = new NameValueCollection
@@ -25,7 +25,7 @@
                 ["6:Parameters"] = "Parameters",
                 ["6:EncryptedKey"] = "EncryptedKey"
             };
-            thirdPartyResultApiConfig = new ThirdPartyResultApiConfigImpl(productId);
+            thirdPartyResultApiConfig = new ProductResultApiConfigImpl(productId);
         }
 
         [Fact]

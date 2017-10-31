@@ -12,12 +12,12 @@
 
     public class HomeController : Controller
     {
-        private readonly ThirdPartyResultServiceFactory serviceFactory;
+        private readonly ProductResultServiceFactory serviceFactory;
 
         public HomeController()
         {
             var jsonCoverver = new JsonConverterImpl();
-            serviceFactory = new ThirdPartyResultServiceFactoryImpl(Logger.Log, jsonCoverver);
+            serviceFactory = new ProductResultServiceFactoryImpl(Logger.Log, jsonCoverver);
         }
 
         // GET: Home
@@ -26,7 +26,7 @@
             Check.Argument.IsNotNull(message, "message");
 
             var productName = CacheRefFactory.CacheRef.GetProductName(message.ProductId);
-            var service = serviceFactory.CreateThirdPartyResultService(message.ProductId);
+            var service = serviceFactory.CreateProductResultService(message.ProductId);
 
             var viewModel = new ThirdPartyResultViewModel(productName, service.GetResultLink(message));
 

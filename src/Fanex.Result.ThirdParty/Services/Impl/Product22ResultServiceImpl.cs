@@ -1,21 +1,36 @@
 ﻿namespace Fanex.Result.ThirdParty.Services.Impl
 {
     using System;
+    using Configurations;
     using Core.Voidbridge;
     using Helpers;
+    using Logging;
     using Models;
     using Models.Requests;
 
-    public class MacauGamesResultServiceImpl : ResultService
+    public class Product22ResultServiceImpl : ResultServiceImpl
     {
         private readonly VoidbridgeApi voidbridgeApi;
 
-        public MacauGamesResultServiceImpl(VoidbridgeApi voidbridgeApi = null)
+        public Product22ResultServiceImpl(
+           ProductResultApiConfig config,
+           ILogger logger,
+           JsonConverter jsonConverter)
+           : this(config, logger, jsonConverter, null)
+        {
+        }
+
+        public Product22ResultServiceImpl(
+            ProductResultApiConfig config,
+            ILogger logger,
+            JsonConverter jsonConverter,
+            VoidbridgeApi voidbridgeApi)
+            : base(config, logger, jsonConverter)
         {
             this.voidbridgeApi = voidbridgeApi ?? new VoidbridgeApiImp();
         }
 
-        public Result GetResultLink(ThirdPartyResultBaseQuery request)
+        public override Result GetResultLink(ThirdPartyResultBaseQuery request)
         {
             try
             {

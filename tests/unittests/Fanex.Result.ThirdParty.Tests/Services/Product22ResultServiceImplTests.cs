@@ -4,23 +4,32 @@
     using Constants;
     using Core.Voidbridge;
     using KellermanSoftware.CompareNetObjects;
+    using Logging;
     using Models;
     using Models.Requests;
     using NSubstitute;
+    using ThirdParty.Configurations;
+    using ThirdParty.Services;
     using ThirdParty.Services.Impl;
     using Xunit;
 
-    public class MacauGamesResultServiceImplTests
+    public class Product22ResultServiceImplTests
     {
         private readonly CompareLogic compareLogic;
         private readonly VoidbridgeApi voidbridgeApi;
-        private readonly MacauGamesResultServiceImpl macauGamesResultService;
 
-        public MacauGamesResultServiceImplTests()
+        private readonly Product22ResultServiceImpl macauGamesResultService;
+
+        public Product22ResultServiceImplTests()
         {
             compareLogic = new CompareLogic();
+
+            var config = Substitute.For<ProductResultApiConfig>();
+            var logger = Substitute.For<ILogger>();
+            var jsonConverter = Substitute.For<JsonConverter>();
             voidbridgeApi = Substitute.For<VoidbridgeApi>();
-            macauGamesResultService = new MacauGamesResultServiceImpl(voidbridgeApi);
+
+            macauGamesResultService = new Product22ResultServiceImpl(config, logger, jsonConverter, voidbridgeApi);
         }
 
         [Fact]

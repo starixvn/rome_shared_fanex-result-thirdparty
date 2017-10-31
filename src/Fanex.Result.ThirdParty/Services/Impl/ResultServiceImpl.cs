@@ -27,9 +27,12 @@
         private const string DefaultLanguage = "en-US";
         private readonly ILogger logger;
         private readonly JsonConverter jsonConverter;
-        private readonly ThirdPartyResultApiConfig config;
+        private readonly ProductResultApiConfig config;
 
-        public ResultServiceImpl(ThirdPartyResultApiConfig config, ILogger logger, JsonConverter jsonConverter)
+        public ResultServiceImpl(
+            ProductResultApiConfig config,
+            ILogger logger,
+            JsonConverter jsonConverter)
         {
             this.config = config;
             this.logger = logger;
@@ -67,17 +70,8 @@
                 var request = new Request
                 {
                     Timestamp = SystemTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff"),
-                    Auth = new Auth
-                    {
-                        Login = "Login",
-                        Password = config.Password,
-                        SiteId = siteId
-                    },
-                    Call = new Call
-                    {
-                        Seq = config.Seq,
-                        VendorId = config.VendorId
-                    }
+                    Auth = new Auth("Login", config.Password, siteId),
+                    Call = new Call(config.Seq, config.VendorId)
                 };
 
                 var responseString = WebClientHelper.CallHttpPost(authorizationUrl, jsonConverter.SerializeObject(request));

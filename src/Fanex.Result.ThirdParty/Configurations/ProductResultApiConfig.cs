@@ -5,7 +5,7 @@
     using Constants;
     using Helpers;
 
-    public interface ThirdPartyResultApiConfig
+    public interface ProductResultApiConfig
     {
         string ProductName { get; }
 
@@ -26,11 +26,11 @@
         string EncryptedKey { get; }
     }
 
-    public class ThirdPartyResultApiConfigImpl : ThirdPartyResultApiConfig
+    public class ProductResultApiConfigImpl : ProductResultApiConfig
     {
         private readonly int productId;
 
-        public ThirdPartyResultApiConfigImpl(int productId)
+        public ProductResultApiConfigImpl(int productId)
         {
             this.productId = productId;
 

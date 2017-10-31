@@ -230,14 +230,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configurations\ThirdPartyResultApiConfigImplTests.cs" />
+    <Compile Include="Configurations\ProductResultApiConfigImplTests.cs" />
     <Compile Include="Constants\DefaultVariables.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\SiteHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\FishingWorldResultServiceImplTests.cs" />
-    <Compile Include="Services\MacauGamesResultServiceImplTests.cs" />
-    <Compile Include="Services\ThirdPartyResultServiceFactoryImplTests.cs" />
+    <Compile Include="Services\Product24ResultServiceImplTests.cs" />
+    <Compile Include="Services\Product22ResultServiceImplTests.cs" />
+    <Compile Include="Services\ProductResultServiceFactoryImplTests.cs" />
     <Compile Include="Services\ResultServiceImplTests.cs" />
     <Compile Include="Utils\SystemTimeTests.cs" />
   </ItemGroup>

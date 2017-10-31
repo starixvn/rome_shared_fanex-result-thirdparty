@@ -2,10 +2,20 @@
 {
     public class Auth
     {
-        public string Login { get; set; }
+        public Auth(
+            string login,
+            string password,
+            int siteId)
+        {
+            Login = login;
+            Password = password;
+            SiteId = siteId;
+        }
 
-        public string Password { get; set; }
+        public string Login { get; }
 
-        public int SiteId { get; set; }
+        public string Password { get; }
+
+        public int SiteId { get; }
     }
 }

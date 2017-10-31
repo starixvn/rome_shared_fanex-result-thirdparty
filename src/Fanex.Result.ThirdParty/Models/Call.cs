@@ -2,8 +2,16 @@
 {
     public class Call
     {
-        public string Seq { get; set; }
+        public Call(
+            string seq,
+            int vendorId)
+        {
+            Seq = seq;
+            VendorId = vendorId;
+        }
 
-        public int VendorId { get; set; }
+        public string Seq { get; }
+
+        public int VendorId { get; }
     }
 }

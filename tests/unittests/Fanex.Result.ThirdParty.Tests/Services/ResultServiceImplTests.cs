@@ -17,7 +17,6 @@
     public class ResultServiceImplTests
     {
         private readonly CompareLogic compareLogic;
-        private readonly ThirdPartyResultApiConfig config;
         private readonly ILogger logger;
         private readonly JsonConverter jsonConverter;
         private readonly ResultServiceImpl thirdPartyResultService;
@@ -26,7 +25,7 @@
         {
             compareLogic = new CompareLogic();
 
-            config = Substitute.For<ThirdPartyResultApiConfig>();
+            var config = Substitute.For<ProductResultApiConfig>();
             config.ProductName.Returns("RNG Casino");
             config.ResultUrl.Returns("ResultUrl?o={0}");
 

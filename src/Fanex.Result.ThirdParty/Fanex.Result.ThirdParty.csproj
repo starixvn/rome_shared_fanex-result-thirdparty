@@ -132,7 +132,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\AppSettings.cs" />
-    <Compile Include="Configurations\ThirdPartyResultApiConfig.cs" />
+    <Compile Include="Configurations\ConfigFactory.cs" />
+    <Compile Include="Configurations\ProductResultApiConfig.cs" />
     <Compile Include="Constants\ProductIdConstants.cs" />
     <Compile Include="Constants\RoleIdConstants.cs" />
     <Compile Include="GlobalSuppressions.cs" />
@@ -148,13 +149,13 @@
     <Compile Include="Models\TokenResult.cs" />
     <Compile Include="Models\Views\ThirdPartyResultViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Impl\ProductResultServiceFactoryImpl.cs" />
     <Compile Include="Services\JsonConverter.cs" />
-    <Compile Include="Services\Impl\FishingWorldResultServiceImpl.cs" />
-    <Compile Include="Services\Impl\MacauGamesResultServiceImpl.cs" />
+    <Compile Include="Services\Impl\Product24ResultServiceImpl.cs" />
+    <Compile Include="Services\Impl\Product22ResultServiceImpl.cs" />
     <Compile Include="Services\Impl\ResultServiceImpl.cs" />
-    <Compile Include="Services\Impl\ThirdPartyResultServiceFactoryImpl.cs" />
     <Compile Include="Services\ResultService.cs" />
-    <Compile Include="Services\ThirdPartyResultServiceFactory.cs" />
+    <Compile Include="Services\ProductResultServiceFactory.cs" />
     <Compile Include="Utils\SystemTime.cs" />
   </ItemGroup>
   <ItemGroup />

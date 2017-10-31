@@ -5,23 +5,31 @@
     using Core.Base.Models;
     using Core.GlobalGaming.DTO;
     using KellermanSoftware.CompareNetObjects;
+    using Logging;
     using Models;
     using Models.Requests;
     using NSubstitute;
+    using ThirdParty.Configurations;
+    using ThirdParty.Services;
     using ThirdParty.Services.Impl;
     using Xunit;
 
-    public class FishingWorldResultServiceImplTests
+    public class Product24ResultServiceImplTests
     {
         private readonly CompareLogic compareLogic;
         private readonly Base3rdResultApi resultApi;
-        private readonly FishingWorldResultServiceImpl fishingWorldResultService;
+        private readonly Product24ResultServiceImpl fishingWorldResultService;
 
-        public FishingWorldResultServiceImplTests()
+        public Product24ResultServiceImplTests()
         {
             compareLogic = new CompareLogic();
+
+            var config = Substitute.For<ProductResultApiConfig>();
+            var logger = Substitute.For<ILogger>();
+            var jsonConverter = Substitute.For<JsonConverter>();
             resultApi = Substitute.ForPartsOf<Base3rdResultApi>();
-            fishingWorldResultService = new FishingWorldResultServiceImpl(resultApi);
+
+            fishingWorldResultService = new Product24ResultServiceImpl(config, logger, jsonConverter, resultApi);
         }
 
         [Fact]

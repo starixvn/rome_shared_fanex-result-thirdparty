@@ -1,23 +1,38 @@
 ﻿namespace Fanex.Result.ThirdParty.Services.Impl
 {
     using System;
+    using Configurations;
     using Core.Base.Models;
     using Core.GlobalGaming;
     using Core.GlobalGaming.DTO;
     using Helpers;
+    using Logging;
     using Models;
     using Models.Requests;
 
-    public class FishingWorldResultServiceImpl : ResultService
+    public class Product24ResultServiceImpl : ResultServiceImpl
     {
         private readonly Base3rdResultApi resultApi;
 
-        public FishingWorldResultServiceImpl(Base3rdResultApi resultApi = null)
+        public Product24ResultServiceImpl(
+           ProductResultApiConfig config,
+           ILogger logger,
+           JsonConverter jsonConverter)
+            : this(config, logger, jsonConverter, null)
+        {
+        }
+
+        public Product24ResultServiceImpl(
+            ProductResultApiConfig config,
+            ILogger logger,
+            JsonConverter jsonConverter,
+            Base3rdResultApi resultApi)
+            : base(config, logger, jsonConverter)
         {
             this.resultApi = resultApi ?? new GlobalGamingResultApi();
         }
 
-        public Result GetResultLink(ThirdPartyResultBaseQuery request)
+        public override Result GetResultLink(ThirdPartyResultBaseQuery request)
         {
             try
             {
