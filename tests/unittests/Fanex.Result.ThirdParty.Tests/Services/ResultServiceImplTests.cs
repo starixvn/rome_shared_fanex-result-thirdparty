@@ -4,12 +4,12 @@
     using System.Collections.Generic;
     using KellermanSoftware.CompareNetObjects;
     using Logging;
-    using Models;
-    using Models.Requests;
     using NSubstitute;
     using ThirdParty.Configurations;
     using ThirdParty.Constants;
     using ThirdParty.Helpers;
+    using ThirdParty.Models;
+    using ThirdParty.Models.Requests;
     using ThirdParty.Services;
     using ThirdParty.Services.Impl;
     using Xunit;
@@ -106,14 +106,29 @@
         public void GetToken_Always_CallsDeserializeObject()
         {
             // Arrange
-            var uploadStringFunc = Substitute.For<Func<string, string, string>>();
-            WebClientHelper.CallHttpPost = uploadStringFunc;
+            WebClientHelper.CallHttpPost = Substitute.For<Func<string, string, string>>();
 
             // Act
             thirdPartyResultService.GetToken(roleId: 2);
 
             // Assert
             jsonConverter.Received().DeserializeObject<TokenResponse>(Arg.Any<string>());
+        }
+
+        [Fact]
+        public void GetToken_HaveException_LogError()
+        {
+            // Arrange
+            WebClientHelper.CallHttpPost = Substitute.For<Func<string, string, string>>();
+
+            var exception = new Exception("Message", new Exception("InnerMessage"));
+            WebClientHelper.CallHttpPost(Arg.Any<string>(), Arg.Any<string>()).Returns(x => { throw exception; });
+
+            // Act
+            thirdPartyResultService.GetToken(roleId: 2);
+
+            // Assert
+            logger.Received().Error(Arg.Is(exception.Message), Arg.Is(exception.InnerException));
         }
 
         [Theory]

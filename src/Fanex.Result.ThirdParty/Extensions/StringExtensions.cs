@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Fanex.Result.ThirdParty.Helpers
+﻿namespace Fanex.Result.ThirdParty.Extensions
 {
+    using System;
+
     public static class StringExtensions
     {
         public static string[] ToArray(this string delimitedString)

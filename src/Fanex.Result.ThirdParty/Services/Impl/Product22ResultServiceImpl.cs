@@ -38,7 +38,7 @@
 
                 var resultLink = voidbridgeApi.GetBetHistoryUrl(
                     request.CustId.ToString(),
-                    request.RefNo,
+                    request.GameId,
                     request.Language,
                     siteId);
 

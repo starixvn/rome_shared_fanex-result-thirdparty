@@ -136,11 +136,10 @@
     <Compile Include="Configurations\AppSettings.cs" />
     <Compile Include="Configurations\ConfigFactory.cs" />
     <Compile Include="Configurations\ProductResultApiConfig.cs" />
-    <Compile Include="Constants\ProductIdConstants.cs" />
     <Compile Include="Constants\RoleIdConstants.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\SiteHelper.cs" />
-    <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Helpers\WebClientHelper.cs" />
     <Compile Include="Models\Auth.cs" />
     <Compile Include="Models\Call.cs" />

@@ -41,20 +41,20 @@
 
         public virtual Result GetResultLink(ThirdPartyResultBaseQuery request)
         {
-            var toKen = GetToken(request.RoleId);
+            var token = GetToken(request.RoleId);
 
-            if (toKen == null)
+            if (token == null)
             {
                 var resultMessage = $"Cannot connect to {config.ProductName} API. Please contact Administrator.";
                 return new ErrorResult(resultMessage);
             }
 
-            if (!toKen.Result.ErrorCode.Equals("0"))
+            if (!token.Result.ErrorCode.Equals("0"))
             {
-                return new ErrorResult(toKen.Result.ErrorDescription);
+                return new ErrorResult(token.Result.ErrorDescription);
             }
 
-            var parameters = GetParameters(toKen.Result.Token, request.RefNo, request.Language);
+            var parameters = GetParameters(token.Result.Token, request.GameId, request.Language);
             var resultLink = string.Format(config.ResultUrl, parameters);
 
             return new SuccessResult(resultLink);

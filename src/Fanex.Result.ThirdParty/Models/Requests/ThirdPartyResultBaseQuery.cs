@@ -8,7 +8,7 @@
 
         public int ProductId { get; set; }
 
-        public string RefNo { get; set; }
+        public string GameId { get; set; }
 
         public string Language { get; set; }
     }

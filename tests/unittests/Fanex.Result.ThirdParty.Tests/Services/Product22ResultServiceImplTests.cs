@@ -5,10 +5,10 @@
     using Core.Voidbridge;
     using KellermanSoftware.CompareNetObjects;
     using Logging;
-    using Models;
-    using Models.Requests;
     using NSubstitute;
     using ThirdParty.Configurations;
+    using ThirdParty.Models;
+    using ThirdParty.Models.Requests;
     using ThirdParty.Services;
     using ThirdParty.Services.Impl;
     using Xunit;
@@ -36,7 +36,7 @@
         public void GetResultLink_NotHaveException_CallGetResultUrlFromApi()
         {
             // Arrange
-            var query = new ThirdPartyResultBaseQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
+            var query = new ThirdPartyResultBaseQuery { CustId = 1, GameId = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
 
             // Act
             macauGamesResultService.GetResultLink(query);
@@ -44,7 +44,7 @@
             // Assert
             voidbridgeApi.Received().GetBetHistoryUrl(
                 Arg.Is(query.CustId.ToString()),
-                Arg.Is(query.RefNo),
+                Arg.Is(query.GameId),
                 Arg.Is(query.Language),
                 "3000");
         }
@@ -53,7 +53,7 @@
         public void GetResultLink_NotHaveException_ReturnSuccessThirdPartyResult()
         {
             // Arrange
-            var query = new ThirdPartyResultBaseQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
+            var query = new ThirdPartyResultBaseQuery { CustId = 1, GameId = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
 
             voidbridgeApi.GetBetHistoryUrl(
                 Arg.Any<string>(),
@@ -75,7 +75,7 @@
         public void GetResultLink_HaveException_ReturnErrorThirdPartyResult()
         {
             // Arrange
-            var query = new ThirdPartyResultBaseQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
+            var query = new ThirdPartyResultBaseQuery { CustId = 1, GameId = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
 
             voidbridgeApi.GetBetHistoryUrl(Arg.Any<string>(),
                 Arg.Any<string>(),

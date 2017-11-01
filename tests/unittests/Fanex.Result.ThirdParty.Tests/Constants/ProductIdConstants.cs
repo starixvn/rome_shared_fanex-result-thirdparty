@@ -1,4 +1,4 @@
-﻿namespace Fanex.Result.ThirdParty.Constants
+﻿namespace Fanex.Result.ThirdParty.Tests.Constants
 {
     public static class ProductIdConstants
     {

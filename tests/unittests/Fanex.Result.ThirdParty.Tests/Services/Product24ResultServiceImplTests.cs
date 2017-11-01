@@ -6,10 +6,10 @@
     using Core.GlobalGaming.DTO;
     using KellermanSoftware.CompareNetObjects;
     using Logging;
-    using Models;
-    using Models.Requests;
     using NSubstitute;
     using ThirdParty.Configurations;
+    using ThirdParty.Models;
+    using ThirdParty.Models.Requests;
     using ThirdParty.Services;
     using ThirdParty.Services.Impl;
     using Xunit;
@@ -36,7 +36,7 @@
         public void GetResultLink_NotHaveException_CallGetResultUrlFromApi()
         {
             // Arrange
-            var query = new ThirdPartyResultBaseQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
+            var query = new ThirdPartyResultBaseQuery { CustId = 1, GameId = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
 
             // Act
             fishingWorldResultService.GetResultLink(query);
@@ -44,7 +44,7 @@
             // Assert
             resultApi.Received().GetResultUrl(Arg.Is<GlobalGamingDTO>(
                 param => param.CustId == query.CustId.ToString()
-                    && param.GameId == query.RefNo
+                    && param.GameId == query.GameId
                     && param.Language == query.Language
                     && param.SiteId == "3000"));
         }
@@ -53,7 +53,7 @@
         public void GetResultLink_NotHaveException_ReturnSuccessThirdPartyResult()
         {
             // Arrange
-            var query = new ThirdPartyResultBaseQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
+            var query = new ThirdPartyResultBaseQuery { CustId = 1, GameId = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
 
             resultApi.GetResultUrl(Arg.Any<GlobalGamingDTO>()).Returns("Url");
 
@@ -70,7 +70,7 @@
         public void GetResultLink_HaveException_ReturnErrorThirdPartyResult()
         {
             // Arrange
-            var query = new ThirdPartyResultBaseQuery { CustId = 1, RefNo = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
+            var query = new ThirdPartyResultBaseQuery { CustId = 1, GameId = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
 
             resultApi.GetResultUrl(Arg.Any<GlobalGamingDTO>()).Returns(x => { throw new Exception("ErrorMessage"); });
 

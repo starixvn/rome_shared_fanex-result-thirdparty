@@ -41,7 +41,7 @@
                 var globalGamingDTO = new GlobalGamingDTO
                 {
                     CustId = request.CustId.ToString(),
-                    GameId = request.RefNo,
+                    GameId = request.GameId,
                     SiteId = siteId,
                     Language = request.Language
                 };

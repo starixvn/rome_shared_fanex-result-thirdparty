@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using Common;
     using Constants;
-    using Helpers;
+    using Extensions;
 
     public interface ProductResultApiConfig
     {

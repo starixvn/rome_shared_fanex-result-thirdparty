@@ -1,10 +1,10 @@
 ﻿namespace Fanex.Result.ThirdParty.Tests.Services
 {
     using System.Collections.Specialized;
+    using Constants;
     using Logging;
     using NSubstitute;
     using ThirdParty.Configurations;
-    using ThirdParty.Constants;
     using ThirdParty.Services;
     using ThirdParty.Services.Impl;
     using Xunit;

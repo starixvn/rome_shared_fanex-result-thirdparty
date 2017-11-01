@@ -232,8 +232,11 @@
   <ItemGroup>
     <Compile Include="Configurations\ProductResultApiConfigImplTests.cs" />
     <Compile Include="Constants\DefaultVariables.cs" />
+    <Compile Include="Constants\ProductIdConstants.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\SiteHelperTests.cs" />
+    <Compile Include="Extensions\StringExtensionsTests.cs" />
+    <Compile Include="Models\Views\ThirdPartyResultViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Product24ResultServiceImplTests.cs" />
     <Compile Include="Services\Product22ResultServiceImplTests.cs" />

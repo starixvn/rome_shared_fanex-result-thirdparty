@@ -1,7 +1,6 @@
 ﻿namespace Fanex.Result.ThirdParty.Samples.Controllers
 {
     using System.Web.Mvc;
-    using Alpha.RemotingRef;
     using Common.Helper;
     using Logging;
     using Models.Requests;
@@ -25,10 +24,9 @@
         {
             Check.Argument.IsNotNull(message, "message");
 
-            var productName = CacheRefFactory.CacheRef.GetProductName(message.ProductId);
             var service = serviceFactory.CreateProductResultService(message.ProductId);
 
-            var viewModel = new ThirdPartyResultViewModel(productName, service.GetResultLink(message));
+            var viewModel = new ThirdPartyResultViewModel("Product Name", service.GetResultLink(message));
 
             return View(viewModel);
         }
