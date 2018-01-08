@@ -4,6 +4,7 @@
     using Constants;
     using Logging;
     using NSubstitute;
+    using RestSharp;
     using ThirdParty.Configurations;
     using ThirdParty.Services;
     using ThirdParty.Services.Impl;
@@ -12,15 +13,15 @@
     public class ProductResultServiceFactoryImplTests
     {
         private readonly ILogger logger;
-        private readonly JsonConverter jsonConverter;
+        private readonly IRestClient restClient;
         private readonly ProductResultServiceFactoryImpl thirdPartyServiceResultFactory;
 
         public ProductResultServiceFactoryImplTests()
         {
             logger = Substitute.For<ILogger>();
-            jsonConverter = Substitute.For<JsonConverter>();
+            restClient = Substitute.For<IRestClient>();
 
-            thirdPartyServiceResultFactory = new ProductResultServiceFactoryImpl(logger, jsonConverter);
+            thirdPartyServiceResultFactory = new ProductResultServiceFactoryImpl(logger, restClient);
         }
 
         [Fact]

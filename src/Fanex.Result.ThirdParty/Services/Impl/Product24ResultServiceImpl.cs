@@ -9,6 +9,7 @@
     using Logging;
     using Models;
     using Models.Requests;
+    using RestSharp;
 
     public class Product24ResultServiceImpl : ResultServiceImpl
     {
@@ -17,22 +18,22 @@
         public Product24ResultServiceImpl(
            ProductResultApiConfig config,
            ILogger logger,
-           JsonConverter jsonConverter)
-            : this(config, logger, jsonConverter, null)
+           IRestClient restClient)
+            : this(config, logger, restClient, null)
         {
         }
 
         public Product24ResultServiceImpl(
             ProductResultApiConfig config,
             ILogger logger,
-            JsonConverter jsonConverter,
+            IRestClient restClient,
             Base3rdResultApi resultApi)
-            : base(config, logger, jsonConverter)
+            : base(config, logger, restClient)
         {
             this.resultApi = resultApi ?? new GlobalGamingResultApi();
         }
 
-        public override Result GetResultLink(ThirdPartyResultBaseQuery request)
+        public override Result GetDetailLink(ThirdPartyResultBaseQuery request)
         {
             try
             {

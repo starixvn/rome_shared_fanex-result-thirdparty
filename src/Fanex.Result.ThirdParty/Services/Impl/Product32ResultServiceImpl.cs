@@ -1,12 +1,12 @@
 ﻿namespace Fanex.Result.ThirdParty.Services.Impl
 {
-    using System;
     using Configurations;
     using Core.PP;
     using Helpers;
     using Logging;
     using Models;
     using Models.Requests;
+    using RestSharp;
 
     public class Product32ResultServiceImpl : ResultServiceImpl
     {
@@ -15,39 +15,32 @@
         public Product32ResultServiceImpl(
             ProductResultApiConfig config,
             ILogger logger,
-            JsonConverter jsonConverter)
-            : this(config, logger, jsonConverter, null)
+            IRestClient restClient)
+            : this(config, logger, restClient, null)
         {
         }
 
         public Product32ResultServiceImpl(
             ProductResultApiConfig config,
             ILogger logger,
-            JsonConverter jsonConverter,
+            IRestClient restClient,
             IPPResult ppResult)
-            : base(config, logger, jsonConverter)
+            : base(config, logger, restClient)
         {
             this.ppResult = ppResult ?? new PPResult();
         }
 
-        public override Result GetResultLink(ThirdPartyResultBaseQuery request)
+        public override Result GetDetailLink(ThirdPartyResultBaseQuery request)
         {
-            try
-            {
-                var siteId = SiteHelper.GetSiteIdByRole(request.RoleId);
+            var siteId = SiteHelper.GetSiteIdByRole(request.RoleId);
 
-                var resultLink = ppResult.GetPPResult(
-                    request.CustId.ToString(),
-                    request.GameId,
-                    request.Language,
-                    siteId);
+            var resultLink = ppResult.GetPPResult(
+                request.CustId.ToString(),
+                request.GameId,
+                request.Language,
+                siteId);
 
-                return new SuccessResult(resultLink);
-            }
-            catch (Exception ex)
-            {
-                return new ErrorResult(ex.Message);
-            }
+            return new SuccessResult(resultLink);
         }
     }
 }

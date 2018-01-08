@@ -7,6 +7,7 @@
     using KellermanSoftware.CompareNetObjects;
     using Logging;
     using NSubstitute;
+    using RestSharp;
     using ThirdParty.Configurations;
     using ThirdParty.Models;
     using ThirdParty.Models.Requests;
@@ -26,10 +27,10 @@
 
             var config = Substitute.For<ProductResultApiConfig>();
             var logger = Substitute.For<ILogger>();
-            var jsonConverter = Substitute.For<JsonConverter>();
+            var restClient = Substitute.For<IRestClient>();
             resultApi = Substitute.ForPartsOf<Base3rdResultApi>();
 
-            fishingWorldResultService = new Product24ResultServiceImpl(config, logger, jsonConverter, resultApi);
+            fishingWorldResultService = new Product24ResultServiceImpl(config, logger, restClient, resultApi);
         }
 
         [Fact]
@@ -39,7 +40,7 @@
             var query = new ThirdPartyResultBaseQuery { CustId = 1, GameId = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
 
             // Act
-            fishingWorldResultService.GetResultLink(query);
+            fishingWorldResultService.GetDetailLink(query);
 
             // Assert
             resultApi.Received().GetResultUrl(Arg.Is<GlobalGamingDTO>(
@@ -60,7 +61,7 @@
             var expectedModel = new SuccessResult("Url");
 
             // Act
-            var actualModel = fishingWorldResultService.GetResultLink(query);
+            var actualModel = fishingWorldResultService.GetDetailLink(query);
 
             // Assert
             Assert.True(compareLogic.Compare(expectedModel, actualModel).AreEqual);
@@ -77,7 +78,7 @@
             var expectedModel = new ErrorResult("ErrorMessage");
 
             // Act
-            var actualModel = fishingWorldResultService.GetResultLink(query);
+            var actualModel = fishingWorldResultService.GetDetailLink(query);
 
             // Assert
             Assert.True(compareLogic.Compare(expectedModel, actualModel).AreEqual);

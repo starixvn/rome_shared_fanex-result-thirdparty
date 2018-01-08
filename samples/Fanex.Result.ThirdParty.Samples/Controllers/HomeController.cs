@@ -5,8 +5,8 @@
     using Logging;
     using Models.Requests;
     using Models.Views;
+    using RestSharp;
     using Services;
-    using ThirdParty.Services;
     using ThirdParty.Services.Impl;
 
     public class HomeController : Controller
@@ -15,8 +15,7 @@
 
         public HomeController()
         {
-            var jsonCoverver = new JsonConverterImpl();
-            serviceFactory = new ProductResultServiceFactoryImpl(Logger.Log, jsonCoverver);
+            serviceFactory = new ProductResultServiceFactoryImpl(Logger.Log, new RestClient());
         }
 
         // GET: Home

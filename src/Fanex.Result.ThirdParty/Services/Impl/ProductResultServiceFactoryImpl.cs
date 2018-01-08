@@ -5,16 +5,17 @@
     using System.Reflection;
     using Fanex.Logging;
     using Fanex.Result.ThirdParty.Configurations;
+    using RestSharp;
 
     public class ProductResultServiceFactoryImpl : ProductResultServiceFactory
     {
         private readonly ILogger logger;
-        private readonly JsonConverter jsonConverter;
+        private readonly IRestClient restClient;
 
-        public ProductResultServiceFactoryImpl(ILogger logger, JsonConverter jsonConverter)
+        public ProductResultServiceFactoryImpl(ILogger logger, IRestClient restClient)
         {
             this.logger = logger;
-            this.jsonConverter = jsonConverter;
+            this.restClient = restClient;
         }
 
         public ResultService CreateProductResultService(int productId)
@@ -25,8 +26,8 @@
             var serviceType = types?.FirstOrDefault(t => t.IsClass && t.Name.Equals($"Product{productId}ResultServiceImpl"));
 
             var service = serviceType != null
-                ? (ResultService)Activator.CreateInstance(serviceType, config, logger, jsonConverter)
-                : new ResultServiceImpl(config, logger, jsonConverter);
+                ? (ResultService)Activator.CreateInstance(serviceType, config, logger, restClient)
+                : new ResultServiceImpl(config, logger, restClient);
 
             return service;
         }
