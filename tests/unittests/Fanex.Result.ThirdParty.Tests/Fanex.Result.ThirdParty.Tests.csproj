@@ -56,6 +56,10 @@
       <HintPath>..\..\..\packages\Fanex.Result.Core.GlobalGaming.1.0.0.2\lib\net40\Fanex.Result.Core.GlobalGaming.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.Result.Core.PP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.Result.Core.PP.1.0.0.0-beta1\lib\Fanex.Result.Core.PP.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.Result.Core.Voidbridge, Version=1.0.1.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.Result.Core.Voidbridge.1.0.1.2\lib\Fanex.Result.Core.Voidbridge.dll</HintPath>
       <Private>True</Private>
@@ -240,6 +244,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Product24ResultServiceImplTests.cs" />
     <Compile Include="Services\Product22ResultServiceImplTests.cs" />
+    <Compile Include="Services\Product32ResultServiceImplTests.cs" />
     <Compile Include="Services\ProductResultServiceFactoryImplTests.cs" />
     <Compile Include="Services\ResultServiceImplTests.cs" />
     <Compile Include="Utils\SystemTimeTests.cs" />

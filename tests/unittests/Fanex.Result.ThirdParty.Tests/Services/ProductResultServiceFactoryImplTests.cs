@@ -70,5 +70,21 @@
             // Assert
             Assert.True(resultService is Product24ResultServiceImpl);
         }
+
+        [Fact]
+        public void CreateThirdPartyResultService_ProductIsPP_ReturnPPResultService()
+        {
+            // Arrange
+            AppSettings.AppSettingValues = new NameValueCollection
+            {
+                ["32:SiteIds"] = "3200;3100;3000"
+            };
+
+            // Act
+            var resultService = thirdPartyServiceResultFactory.CreateProductResultService(ProductIdConstants.PP);
+
+            // Assert
+            Assert.True(resultService is Product32ResultServiceImpl);
+        }
     }
 }
