@@ -5,6 +5,7 @@
     using KellermanSoftware.CompareNetObjects;
     using Logging;
     using NSubstitute;
+    using RestSharp;
     using ThirdParty.Configurations;
     using ThirdParty.Constants;
     using ThirdParty.Helpers;
@@ -18,16 +19,16 @@
     {
         private readonly CompareLogic compareLogic;
         private readonly ILogger logger;
-        private readonly JsonConverter jsonConverter;
+        private readonly IRestClient restClient;
         private readonly ResultServiceImpl thirdPartyResultService;
-
+        private readonly ProductResultApiConfig config;
         public ResultServiceImplTests()
         {
             compareLogic = new CompareLogic();
 
-            var config = Substitute.For<ProductResultApiConfig>();
+            config = Substitute.For<ProductResultApiConfig>();
             config.ProductName.Returns("RNG Casino");
-            config.ResultUrl.Returns("ResultUrl?o={0}");
+            config.DetailUrl.Returns("ResultUrl?o={0}");
 
             var siteIdMaps = new Dictionary<int, string>
             {
@@ -36,11 +37,15 @@
                 [RoleIdConstants.Agent] = "3000"
             };
             config.SiteIdMaps.Returns(siteIdMaps);
+            config.AuthorizationUrl.Returns("http://testing.com");
+            config.Password.Returns("testing");
+            config.VendorId.Returns(12121);
+            config.VendorKey.Returns("vendorkey");
 
             logger = Substitute.For<ILogger>();
-            jsonConverter = Substitute.For<JsonConverter>();
+            restClient = Substitute.For<IRestClient>();
 
-            thirdPartyResultService = Substitute.ForPartsOf<ResultServiceImpl>(config, logger, jsonConverter);
+            thirdPartyResultService = Substitute.ForPartsOf<ResultServiceImpl>(config, logger, restClient);
         }
 
         [Fact]
@@ -53,9 +58,10 @@
             };
 
             var expectModel = new ErrorResult("Cannot connect to RNG Casino API. Please contact Administrator.");
+            restClient.Execute(Arg.Any<RestRequest>()).Returns(x => { throw new Exception(); });
 
             // Act
-            var actualModel = thirdPartyResultService.GetResultLink(query);
+            var actualModel = thirdPartyResultService.GetDetailLink(query);
 
             // Assert
             Assert.True(compareLogic.Compare(expectModel, actualModel).AreEqual);
@@ -75,7 +81,7 @@
             var expectModel = new ErrorResult("ErrorMessage");
 
             // Act
-            var actualModel = thirdPartyResultService.GetResultLink(query);
+            var actualModel = thirdPartyResultService.GetDetailLink(query);
 
             // Assert
             Assert.True(compareLogic.Compare(expectModel, actualModel).AreEqual);
@@ -96,39 +102,23 @@
             var expectModel = new SuccessResult("ResultUrl?o=Parameter");
 
             // Act
-            var actualModel = thirdPartyResultService.GetResultLink(query);
+            var actualModel = thirdPartyResultService.GetDetailLink(query);
 
             // Assert
             Assert.True(compareLogic.Compare(expectModel, actualModel).AreEqual);
-        }
-
-        [Fact]
-        public void GetToken_Always_CallsDeserializeObject()
-        {
-            // Arrange
-            WebClientHelper.CallHttpPost = Substitute.For<Func<string, string, string>>();
-
-            // Act
-            thirdPartyResultService.GetToken(roleId: 2);
-
-            // Assert
-            jsonConverter.Received().DeserializeObject<TokenResponse>(Arg.Any<string>());
-        }
+        }       
 
         [Fact]
         public void GetToken_HaveException_LogError()
         {
-            // Arrange
-            WebClientHelper.CallHttpPost = Substitute.For<Func<string, string, string>>();
-
-            var exception = new Exception("Message", new Exception("InnerMessage"));
-            WebClientHelper.CallHttpPost(Arg.Any<string>(), Arg.Any<string>()).Returns(x => { throw exception; });
+            // Arrange            
+            restClient.Execute(Arg.Any<RestRequest>()).Returns(x => { throw new Exception(); });
 
             // Act
             thirdPartyResultService.GetToken(roleId: 2);
 
             // Assert
-            logger.Received().Error(Arg.Is(exception.Message), Arg.Is(exception.InnerException));
+            logger.Received().Error(Arg.Any<string>());
         }
 
         [Theory]

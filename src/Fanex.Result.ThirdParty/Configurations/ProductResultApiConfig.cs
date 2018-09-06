@@ -17,7 +17,9 @@
 
         int VendorId { get; }
 
-        string Seq { get; }
+        string VendorKey { get; }
+
+        string DetailUrl { get; }
 
         string ResultUrl { get; }
 
@@ -56,7 +58,9 @@
 
         public int VendorId => Converter.ToInt(AppSettings.GetConfigValue($"{productId}:VendorId"));
 
-        public string Seq => AppSettings.GetConfigValue($"{productId}:Seq");
+        public string VendorKey => AppSettings.GetConfigValue($"{productId}:VendorKey");
+
+        public string DetailUrl => AppSettings.GetConfigValue($"{productId}:DetailUrl");
 
         public string ResultUrl => AppSettings.GetConfigValue($"{productId}:ResultUrl");
 

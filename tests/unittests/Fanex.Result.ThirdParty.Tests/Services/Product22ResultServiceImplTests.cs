@@ -6,6 +6,7 @@
     using KellermanSoftware.CompareNetObjects;
     using Logging;
     using NSubstitute;
+    using RestSharp;
     using ThirdParty.Configurations;
     using ThirdParty.Models;
     using ThirdParty.Models.Requests;
@@ -26,10 +27,10 @@
 
             var config = Substitute.For<ProductResultApiConfig>();
             var logger = Substitute.For<ILogger>();
-            var jsonConverter = Substitute.For<JsonConverter>();
+            var restClient = Substitute.For<IRestClient>();
             voidbridgeApi = Substitute.For<VoidbridgeApi>();
 
-            macauGamesResultService = new Product22ResultServiceImpl(config, logger, jsonConverter, voidbridgeApi);
+            macauGamesResultService = new Product22ResultServiceImpl(config, logger, restClient, voidbridgeApi);
         }
 
         [Fact]
@@ -39,7 +40,7 @@
             var query = new ThirdPartyResultBaseQuery { CustId = 1, GameId = "RefNo", RoleId = 2, Language = DefaultVariables.Language };
 
             // Act
-            macauGamesResultService.GetResultLink(query);
+            macauGamesResultService.GetDetailLink(query);
 
             // Assert
             voidbridgeApi.Received().GetBetHistoryUrl(
@@ -65,7 +66,7 @@
             var expectedModel = new SuccessResult("Url");
 
             // Act
-            var actualModel = macauGamesResultService.GetResultLink(query);
+            var actualModel = macauGamesResultService.GetDetailLink(query);
 
             // Assert
             Assert.True(compareLogic.Compare(expectedModel, actualModel).AreEqual);
@@ -86,7 +87,7 @@
             var expectedModel = new ErrorResult("ErrorMessage");
 
             // Act
-            var actualModel = macauGamesResultService.GetResultLink(query);
+            var actualModel = macauGamesResultService.GetDetailLink(query);
 
             // Assert
             Assert.True(compareLogic.Compare(expectedModel, actualModel).AreEqual);

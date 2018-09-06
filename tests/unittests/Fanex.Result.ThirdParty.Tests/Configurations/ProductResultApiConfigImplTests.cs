@@ -20,8 +20,8 @@
                 ["6:Password"] = "Password",
                 ["6:SiteIds"] = "3200;3100;3000",
                 ["6:VendorId"] = "10",
-                ["6:Seq"] = "Seq",
-                ["6:ResultUrl"] = "ResultUrl",
+                ["6:VendorKey"] = "Seq",
+                ["6:DetailUrl"] = "ResultUrl",
                 ["6:Parameters"] = "Parameters",
                 ["6:EncryptedKey"] = "EncryptedKey"
             };
@@ -105,7 +105,7 @@
             var expectedSetting = "Seq";
 
             // Act
-            var actualSetting = thirdPartyResultApiConfig.Seq;
+            var actualSetting = thirdPartyResultApiConfig.VendorKey;
 
             // Assert
             Assert.Equal(expectedSetting, actualSetting);
@@ -118,7 +118,7 @@
             var expectedSetting = "ResultUrl";
 
             // Act
-            var actualSetting = thirdPartyResultApiConfig.ResultUrl;
+            var actualSetting = thirdPartyResultApiConfig.DetailUrl;
 
             // Assert
             Assert.Equal(expectedSetting, actualSetting);

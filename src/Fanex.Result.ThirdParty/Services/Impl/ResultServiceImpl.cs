@@ -10,38 +10,33 @@
     using Logging;
     using Models;
     using Models.Requests;
+    using RestSharp;
     using Utils;
 
     public class ResultServiceImpl : ResultService
     {
-        private static readonly Dictionary<string, string> SupportedLanguage = new Dictionary<string, string>
-        {
-            ["en-US"] = "en",
-            ["zh-TW"] = "ch",
-            ["zh-CN"] = "cs",
-            ["ja-JP"] = "jp",
-            ["ko-KR"] = "ko",
-            ["vi-VN"] = "vi",
-            ["th-TH"] = "th",
-        };
-        private const string DefaultLanguage = "en-US";
         private readonly ILogger logger;
-        private readonly JsonConverter jsonConverter;
         private readonly ProductResultApiConfig config;
+        private readonly IRestClient restClient;
 
         public ResultServiceImpl(
             ProductResultApiConfig config,
             ILogger logger,
-            JsonConverter jsonConverter)
+            IRestClient restClient)
         {
             this.config = config;
             this.logger = logger;
-            this.jsonConverter = jsonConverter;
+            this.restClient = restClient;
         }
 
-        public virtual Result GetResultLink(ThirdPartyResultBaseQuery request)
+        public Result GetResultLink(ThirdPartyResultBaseQuery request)
         {
-            var token = GetToken(request.RoleId);
+            throw new NotImplementedException();
+        }
+
+        public virtual Result GetDetailLink(ThirdPartyResultBaseQuery request)
+        {
+            var token = GetToken(request.CustId);
 
             if (token == null)
             {
@@ -55,35 +50,36 @@
             }
 
             var parameters = GetParameters(token.Result.Token, request.GameId, request.Language);
-            var resultLink = string.Format(config.ResultUrl, parameters);
+            var resultLink = string.Format(config.DetailUrl, parameters);
 
             return new SuccessResult(resultLink);
         }
 
         protected internal virtual TokenResponse GetToken(int roleId)
         {
-            try
+            restClient.BaseUrl = new Uri(config.AuthorizationUrl);
+            var siteId = GetSiteIdByRole(roleId);
+            var request = new Request
             {
-                var siteId = GetSiteIdByRole(roleId);
-                var authorizationUrl = string.Format(config.AuthorizationUrl);
+                Timestamp = SystemTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff"),
+                Auth = new Auth("Login", config.Password, siteId),
+                Call = new Call(config.VendorKey, config.VendorId)
+            };
+            var restRequest = new RestRequest(Method.POST);
+            restRequest.AddJsonBody(request);
 
-                var request = new Request
-                {
-                    Timestamp = SystemTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff"),
-                    Auth = new Auth("Login", config.Password, siteId),
-                    Call = new Call(config.Seq, config.VendorId)
-                };
-
-                var responseString = WebClientHelper.CallHttpPost(authorizationUrl, jsonConverter.SerializeObject(request));
-                var result = jsonConverter.DeserializeObject<TokenResponse>(responseString);
-
-                return result;
-            }
-            catch (Exception ex)
+            var response = restClient.Execute<TokenResponse>(restRequest);
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
             {
-                logger.Error(ex.Message, ex.InnerException);
+                var message = $"ErrorMsg: {response.ErrorMessage}{Environment.NewLine}" +
+                                    $"Request URL: {restClient.BaseUrl}{Environment.NewLine}" +
+                                    $"API Response: {response.Content} {Environment.NewLine}";
+                logger.Error(message);
+
+                return null;
             }
-            return null;
+
+            return response.Data;
         }
 
         protected internal virtual string GetParameters(string token, string refno, string language)
@@ -107,8 +103,8 @@
         }
 
         protected internal virtual string GetLanguageCode(string language)
-            => !string.IsNullOrEmpty(language) && SupportedLanguage.ContainsKey(language)
-                ? SupportedLanguage[language]
-                : SupportedLanguage[DefaultLanguage];
+            => !string.IsNullOrEmpty(language) && LanguageConstants.SupportedLanguage.ContainsKey(language)
+                ? LanguageConstants.SupportedLanguage[language]
+                : LanguageConstants.SupportedLanguage[LanguageConstants.DefaultLanguage];
     }
 }

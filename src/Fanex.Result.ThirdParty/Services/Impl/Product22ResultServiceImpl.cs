@@ -7,6 +7,7 @@
     using Logging;
     using Models;
     using Models.Requests;
+    using RestSharp;
 
     public class Product22ResultServiceImpl : ResultServiceImpl
     {
@@ -15,22 +16,22 @@
         public Product22ResultServiceImpl(
            ProductResultApiConfig config,
            ILogger logger,
-           JsonConverter jsonConverter)
-           : this(config, logger, jsonConverter, null)
+           IRestClient restClient)
+           : this(config, logger, restClient, null)
         {
         }
 
         public Product22ResultServiceImpl(
             ProductResultApiConfig config,
             ILogger logger,
-            JsonConverter jsonConverter,
+            IRestClient restClient,
             VoidbridgeApi voidbridgeApi)
-            : base(config, logger, jsonConverter)
+            : base(config, logger, restClient)
         {
             this.voidbridgeApi = voidbridgeApi ?? new VoidbridgeApiImp();
         }
 
-        public override Result GetResultLink(ThirdPartyResultBaseQuery request)
+        public override Result GetDetailLink(ThirdPartyResultBaseQuery request)
         {
             try
             {
