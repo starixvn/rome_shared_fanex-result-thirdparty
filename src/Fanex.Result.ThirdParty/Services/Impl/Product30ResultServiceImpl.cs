@@ -84,10 +84,10 @@
         private static bool HasException(IRestResponse<BullfightingToken> response)
             => response.StatusCode != System.Net.HttpStatusCode.OK || !response.Data.ErrorCode.Equals("0");
 
-        private static string GetLanguageCode(string language)
-            => !string.IsNullOrEmpty(language) && LanguageConstants.SupportedLanguage.ContainsKey(language)
-                ? LanguageConstants.SupportedLanguage[language]
-                : LanguageConstants.SupportedLanguage[LanguageConstants.DefaultLanguage];
+        private static string GetLanguageCode(string language) => 
+            !string.IsNullOrEmpty(language) && LanguageConstants.Product30Language.ContainsKey(language)
+            ? LanguageConstants.Product30Language[language]
+            : LanguageConstants.Product30Language[LanguageConstants.DefaultLanguage];
     }
 
     public class BullfightingToken

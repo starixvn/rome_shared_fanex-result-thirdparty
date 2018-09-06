@@ -152,7 +152,7 @@ namespace Fanex.Result.ThirdParty.Tests.Services
         [InlineData("zh-CN", "cs")]
         [InlineData("ja-JP", "jp")]
         [InlineData("ko-KR", "ko")]
-        [InlineData("vi-VN", "vi")]
+        [InlineData("vi-VN", "vn")]
         [InlineData("th-TH", "th")]
         public void GetResultLink_CheckLanguage_ReturnCorrectLink(string language, string expectedLanguage)
         {
