@@ -4,17 +4,36 @@
 
     public static class LanguageConstants
     {
-        public static readonly Dictionary<string, string> SupportedLanguage = new Dictionary<string, string>
+        private static readonly IDictionary<string, string> CommonLanguage = new Dictionary<string, string>
         {
             ["en-US"] = "en",
             ["zh-TW"] = "ch",
             ["zh-CN"] = "cs",
             ["ja-JP"] = "jp",
             ["ko-KR"] = "ko",
-            ["vi-VN"] = "vi",
-            ["th-TH"] = "th",
+            ["th-TH"] = "th"
         };
 
+        public static IDictionary<string, string> SupportedLanguage
+        {
+            get
+            {
+                var lang = CommonLanguage;
+                lang["vi-VN"] = "vi";
+                return lang;
+            }
+        }
+
         public const string DefaultLanguage = "en-US";
+
+        public static IDictionary<string, string> Product30Language
+        {
+            get
+            {
+                var lang = CommonLanguage;
+                lang["vi-VN"] = "vn";
+                return lang;
+            }
+        }
     }
 }
