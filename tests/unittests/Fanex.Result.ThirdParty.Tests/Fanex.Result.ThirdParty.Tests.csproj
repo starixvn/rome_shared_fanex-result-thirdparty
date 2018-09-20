@@ -45,12 +45,12 @@
       <HintPath>..\..\..\packages\Fanex.Logging.1.0.4\lib\net40\Fanex.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Result.Core, Version=2.0.7.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.Result.Core-NPOI.2.0.6.2.0.7.1\lib\net40\Fanex.Result.Core.dll</HintPath>
+    <Reference Include="Fanex.Result.Core, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.Result.Core-NPOI.2.0.6.2.1.0\lib\net40\Fanex.Result.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Result.Core.Base, Version=2.0.7.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Fanex.Result.Core-NPOI.2.0.6.2.0.7.1\lib\net40\Fanex.Result.Core.Base.dll</HintPath>
+    <Reference Include="Fanex.Result.Core.Base, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.Result.Core-NPOI.2.0.6.2.1.0\lib\net40\Fanex.Result.Core.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Result.Core.GlobalGaming, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
@@ -123,10 +123,6 @@
     </Reference>
     <Reference Include="RazorEngine, Version=3.7.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\RazorEngine.3.7.0\lib\net45\RazorEngine.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RemotingRef, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\RemotingRef.1.0.0.2\lib\net40\RemotingRef.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
