@@ -52,6 +52,9 @@
       <HintPath>..\..\packages\Fanex.Result.Core-NPOI.2.0.6.2.1.0\lib\net40\Fanex.Result.Core.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.Result.Core.Casino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Result.Core.Casino.1.0.0.0\lib\Fanex.Result.Core.Casino.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Result.Core.GlobalGaming, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Result.Core.GlobalGaming.1.0.0.2\lib\net40\Fanex.Result.Core.GlobalGaming.dll</HintPath>
       <Private>True</Private>
@@ -190,6 +193,7 @@
     <Compile Include="Models\Views\ThirdPartyResultViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Impl\Product30ResultServiceImpl.cs" />
+    <Compile Include="Services\Impl\Product36ResultServiceImpl.cs" />
     <Compile Include="Services\Impl\Product32ResultServiceImpl.cs" />
     <Compile Include="Services\Impl\ProductResultServiceFactoryImpl.cs" />
     <Compile Include="Services\Impl\Product24ResultServiceImpl.cs" />
