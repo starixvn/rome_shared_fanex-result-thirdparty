@@ -37,13 +37,10 @@
         {
             try
             {
-                var siteId = SiteHelper.GetSiteIdByRole(request.RoleId);
-
                 var globalGamingDTO = new GlobalGamingDTO
                 {
                     CustId = request.CustId.ToString(),
                     GameId = request.GameId,
-                    SiteId = siteId,
                     Language = request.Language
                 };
 
