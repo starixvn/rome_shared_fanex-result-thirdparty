@@ -193,6 +193,7 @@
     <Compile Include="Models\Views\ThirdPartyResultViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Impl\Product30ResultServiceImpl.cs" />
+    <Compile Include="Services\Impl\Product55ResultServiceImpl.cs" />
     <Compile Include="Services\Impl\Product52ResultServiceImpl.cs" />
     <Compile Include="Services\Impl\Product50ResultServiceImpl.cs" />
     <Compile Include="Services\Impl\Product36ResultServiceImpl.cs" />
