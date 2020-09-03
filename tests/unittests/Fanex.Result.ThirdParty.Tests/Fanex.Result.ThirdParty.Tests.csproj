@@ -249,6 +249,10 @@
     <Compile Include="Services\Product30ResultServiceImplTests.cs" />
     <Compile Include="Services\Product24ResultServiceImplTests.cs" />
     <Compile Include="Services\Product22ResultServiceImplTests.cs" />
+    <Compile Include="Services\Product55ResultServiceImplTests.cs" />
+    <Compile Include="Services\Product52ResultServiceImplTests.cs" />
+    <Compile Include="Services\Product50ResultServiceImplTests.cs" />
+    <Compile Include="Services\Product36ResultServiceImplTests.cs" />
     <Compile Include="Services\Product32ResultServiceImplTests.cs" />
     <Compile Include="Services\ProductResultServiceFactoryImplTests.cs" />
     <Compile Include="Services\ResultServiceImplTests.cs" />
