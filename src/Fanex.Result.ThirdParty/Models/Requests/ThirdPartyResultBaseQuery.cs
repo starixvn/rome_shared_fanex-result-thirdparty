@@ -10,6 +10,8 @@
 
         public string GameId { get; set; }
 
+        public string GameCode { get; set; }
+
         public string Language { get; set; }
     }
 }

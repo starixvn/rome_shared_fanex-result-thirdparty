@@ -59,6 +59,9 @@
       <HintPath>..\..\packages\Fanex.Result.Core.GlobalGaming.1.0.0.2\lib\net40\Fanex.Result.Core.GlobalGaming.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.Result.Core.Joker, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Result.Core.Joker.1.0.0.0-beta-01\lib\Fanex.Result.Core.Joker.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Result.Core.PP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Result.Core.PP.1.0.0.0\lib\Fanex.Result.Core.PP.dll</HintPath>
       <Private>True</Private>
@@ -193,6 +196,7 @@
     <Compile Include="Models\Views\ThirdPartyResultViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Impl\Product30ResultServiceImpl.cs" />
+    <Compile Include="Services\Impl\Product56ResultServiceImpl.cs" />
     <Compile Include="Services\Impl\Product55ResultServiceImpl.cs" />
     <Compile Include="Services\Impl\Product52ResultServiceImpl.cs" />
     <Compile Include="Services\Impl\Product50ResultServiceImpl.cs" />
