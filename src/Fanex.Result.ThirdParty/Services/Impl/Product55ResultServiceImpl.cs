@@ -1,7 +1,7 @@
 ﻿namespace Fanex.Result.ThirdParty.Services.Impl
 {
     using Configurations;
-    using Fanex.Result.Core.Casino;
+    using Fanex.Result.Core.PGSoft;
     using Helpers;
     using Logging;
     using Models;
@@ -10,7 +10,7 @@
 
     public class Product55ResultServiceImpl : ResultServiceImpl
     {
-        private readonly ICasinoResult result;
+        private readonly IPGSoftResult result;
 
         public Product55ResultServiceImpl(
             ProductResultApiConfig config,
@@ -24,21 +24,25 @@
             ProductResultApiConfig config,
             ILogger logger,
             IRestClient restClient,
-            ICasinoResult result)
+            IPGSoftResult result)
             : base(config, logger, restClient)
         {
-            this.result = result ?? new CasinoResult("PGSoftResultConfigs");
+            this.result = result ?? new PGSoftResult();
         }
 
         public override Result GetDetailLink(ThirdPartyResultBaseQuery request)
         {
             var siteId = SiteHelper.GetSiteIdByRole(request.RoleId);
+            var param = new PGSoftParam
+            {
+                CustId = request.CustId.ToString(),
+                GamePlayId=request.GameId,
+                GameId3rd = request.GameCode,
+                Language = request.Language,
+                SiteId= siteId
+            };
 
-            var resultLink = result.GetCasinoResult(
-                request.CustId.ToString(),
-                request.GameId,
-                request.Language,
-                siteId);
+            var resultLink = result.GetResult(param);
 
             return new SuccessResult(resultLink);
         }
