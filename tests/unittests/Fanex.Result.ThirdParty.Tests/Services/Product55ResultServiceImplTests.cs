@@ -2,6 +2,7 @@
 {
     using Constants;
     using Fanex.Result.Core.Casino;
+    using Fanex.Result.Core.PGSoft;
     using KellermanSoftware.CompareNetObjects;
     using Logging;
     using NSubstitute;
@@ -18,6 +19,7 @@
         private readonly ICasinoResult result;
         private readonly IRestClient restClient;
         private readonly Product55ResultServiceImpl resultService;
+        private readonly IPGSoftResult pgSoftResult;
 
         public Product55ResultServiceImplTests()
         {
@@ -26,8 +28,9 @@
             var config = Substitute.For<ProductResultApiConfig>();
             var logger = Substitute.For<ILogger>();
             result = Substitute.For<ICasinoResult>();
+            pgSoftResult = Substitute.For<IPGSoftResult>();
 
-            resultService = new Product55ResultServiceImpl(config, logger, restClient, result);
+            resultService = new Product55ResultServiceImpl(config, logger, restClient, pgSoftResult);
         }
 
         [Fact]
@@ -40,11 +43,8 @@
             resultService.GetDetailLink(query);
 
             // Assert
-            result.Received().GetCasinoResult(
-                Arg.Is(query.CustId.ToString()),
-                Arg.Is(query.GameId),
-                Arg.Is(query.Language),
-                "3000");
+            pgSoftResult.Received().GetResult(Arg.Any<PGSoftParam>());
+
         }
 
         [Fact]
@@ -58,9 +58,9 @@
                 Arg.Any<string>(),
                 Arg.Any<string>(),
                 Arg.Any<string>())
-                .Returns("Url");
+                .Returns(string.Empty);
 
-            var expectedModel = new SuccessResult("Url");
+            var expectedModel = new SuccessResult(string.Empty);
 
             // Act
             var actualModel = resultService.GetDetailLink(query);
