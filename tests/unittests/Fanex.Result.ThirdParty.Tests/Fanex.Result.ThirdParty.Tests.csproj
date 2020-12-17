@@ -56,6 +56,9 @@
     <Reference Include="Fanex.Result.Core.Casino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.Result.Core.Casino.1.0.0.0\lib\Fanex.Result.Core.Casino.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Result.Core.GDG, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Fanex.Result.Core.GDG.1.0.0\lib\Fanex.Result.Core.GDG.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Result.Core.GlobalGaming, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Fanex.Result.Core.GlobalGaming.1.0.0.2\lib\net40\Fanex.Result.Core.GlobalGaming.dll</HintPath>
       <Private>True</Private>
@@ -252,6 +255,7 @@
     <Compile Include="Services\Product30ResultServiceImplTests.cs" />
     <Compile Include="Services\Product24ResultServiceImplTests.cs" />
     <Compile Include="Services\Product22ResultServiceImplTests.cs" />
+    <Compile Include="Services\Product59ResultServiceImplTests.cs" />
     <Compile Include="Services\Product55ResultServiceImplTests.cs" />
     <Compile Include="Services\Product52ResultServiceImplTests.cs" />
     <Compile Include="Services\Product50ResultServiceImplTests.cs" />
