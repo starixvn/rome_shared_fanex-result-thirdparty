@@ -2,7 +2,6 @@
 {
     using Configurations;
     using Fanex.Result.Core.GDG;
-    using Helpers;
     using Logging;
     using Models;
     using Models.Requests;
@@ -32,14 +31,12 @@
 
         public override Result GetDetailLink(ThirdPartyResultBaseQuery request)
         {
-            var siteId = SiteHelper.GetSiteIdByRole(request.RoleId);
-
             var resultLink = result.GetResult(
                 request.CustId.ToString(),
                 request.GameId,
-                request.GameCode,
-                request.Language,
-                siteId);
+                request.GameCode,                
+                request.SiteId,
+                request.Language);
 
             return new SuccessResult(resultLink);
         }
