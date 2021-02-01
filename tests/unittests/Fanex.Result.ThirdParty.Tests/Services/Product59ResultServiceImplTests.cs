@@ -47,8 +47,8 @@
                 Arg.Is<string>(i => i == "1"),
                 Arg.Is<string>(i => i == "gameid"),
                 Arg.Is<string>(i => i == "gamecode"),
-                Arg.Is<string>(i => i == "en-Us"),
-                Arg.Is<string>(i => i == "3000"));
+                Arg.Is<string>(i => i == null),
+                Arg.Is<string>(i => i == "en-Us"));
         }
     }
 }
