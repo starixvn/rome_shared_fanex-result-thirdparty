@@ -6,7 +6,7 @@
             string productName,
             Result result)
         {
-            Title = $"{productName} Result";
+            Title = $"{productName}";
             Result = result;
         }
 
