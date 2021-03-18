@@ -10,7 +10,7 @@
         {
             // Arrange
             var productName = "ProductName";
-            var expectedTitle = "ProductName Result";
+            var expectedTitle = "ProductName";
 
             // Act
             var viewModel = new ThirdPartyResultViewModel(productName, null);
